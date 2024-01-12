@@ -4,26 +4,17 @@ jQuery(function ($) {
   // この中であればWordpressでも「$」が使用可能になる
 
   //ハンバーガーメニュークリックでメニューのモーダル
-$('.js-hamburger').on('click', function () {
+  $('.js-hamburger').on('click', function () {
     if ($('.js-hamburger').hasClass('is-open')) {
-        $("html").css("overflow", "auto");
-        $("body").css("overflow", "auto");
-        $('.js-drawer-menu').fadeOut();
-        $(this).removeClass('is-open');
-        // スクロールを再度有効にする
-        $(window).off('.noScroll');
+      $("body").css("overflow", "auto");
+      $('.js-drawer-menu').fadeOut();
+      $(this).removeClass('is-open');
     } else {
-        $("html").css("overflow", "hidden");
-        $("body").css("overflow", "hidden");
-        $('.js-drawer-menu').fadeIn();
-        $(this).addClass('is-open');
-        // スクロールを無効にする
-        $(window).on('touchmove.noScroll', function(e) {
-            e.preventDefault();
-        });
+      $("body").css("overflow", "hidden");
+      $('.js-drawer-menu').fadeIn();
+      $(this).addClass('is-open');
     }
-});
-
+  });
 
   //mvのswiper
   var js_mv_swiper = new Swiper(".js_mv_Swiper", {
@@ -115,25 +106,17 @@ $('.js-hamburger').on('click', function () {
       $('[data-tab="' + dataPram + '"]').addClass('is-active');
     });
   });
-$(".js-modal img").click(function () {
-    $("html").css("overflow", "hidden");
+  $(".js-modal img").click(function () {
     $("body").css("overflow", "hidden");
     $(".about-gallery__grayDisplay").html($(this).prop("outerHTML"));
     $(".about-gallery__grayDisplay").fadeIn(200);
-    // スクロールを無効にする
-    $(window).on('touchmove.noScroll', function(e) {
-        e.preventDefault();
-    });
     return false;
-});
-$(".about-gallery__grayDisplay").click(function () {
-    $("html").css("overflow", "auto");
+  });
+  $(".about-gallery__grayDisplay").click(function () {
     $("body").css("overflow", "auto");
     $(".about-gallery__grayDisplay").fadeOut(200);
-    // スクロールを再度有効にする
-    $(window).off('.noScroll');
     return false;
-});
+  });
 
   //faq-page ----------------------------
   var accordionDetails = '.js-faq-item';

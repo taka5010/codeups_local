@@ -7,7 +7,6 @@ html {
 	scroll-behavior: smooth;
 }
 
-
 body.active {
 	height: 100%;
 	overflow: hidden;
@@ -4977,10 +4976,6 @@ html {
 	font-size: 4.2666666667vw;
 }
 
-}
-body .is-layout-flex {
-    flex-wrap: nowrap;
-    align-items: center;
 }
 
 
