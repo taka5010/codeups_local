@@ -1,0 +1,225 @@
+@use "global" as *;
+
+.sub-information {
+  z-index: initial;
+  @include mq(md) {
+    z-index: initial;
+  }
+}
+
+.sub-information__inner {
+  padding-left: rem(15);
+  padding-right: rem(15);
+  @include mq(md) {
+    padding-left: $padding-pc;
+    padding-right: $padding-pc
+  }
+}
+
+.sub-information__menu {
+  position: relative;
+}
+
+.sub-information__items{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: rem(20);
+  text-align: center;
+  @include mq(md) {
+    column-gap: rem(90);
+  }
+}
+
+.sub-information__item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-green;
+  font-size: rem(14);
+  color: $green;
+  white-space: nowrap;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  height: rem(60);
+  cursor: pointer;
+  @include mq(md) {
+    height: rem(90);
+    font-size: rem(24);
+    gap: rem(10);
+  }
+}
+
+.sub-information__item-1::before {
+  @include mq(md) {
+    background-image: url(../images/common/info_logo1-green.png);
+    content: "";
+    display: block;
+    position: relative;
+    background-repeat: no-repeat;
+    width: rem(64);
+    height: rem(64);
+    background-size: contain;
+  }
+}
+
+.sub-information__item-1:hover:before,
+.sub-information__item-1.is-active::before {
+  @include mq(md) {
+    background-image: url(../images/common/info_logo1-white.png);
+  }
+}
+
+.sub-information__item-2::before {
+  @include mq(md) {
+    background-image: url(../images/common/info_logo2-green.png);
+    content: "";
+    display: block;
+    position: relative;
+    background-repeat: no-repeat;
+    width: rem(64);
+    height: rem(64);
+    background-size: contain;
+  }
+}
+
+.sub-information__item-2:hover:before,
+.sub-information__item-2.is-active::before {
+  @include mq(md) {
+    background-image: url(../images/common/info_logo2-white.png);
+  }
+}
+
+.sub-information__item-3::before {
+  @include mq(md) {
+    background-image: url(../images/common/info_logo3-green.png);
+    content: "";
+    display: block;
+    position: relative;
+    background-repeat: no-repeat;
+    width: rem(64);
+    height: rem(64);
+    background-size: contain;
+  }
+}
+
+.sub-information__item-3:hover:before,
+.sub-information__item-3.is-active::before {
+  @include mq(md) {
+    background-image: url(../images/common/info_logo3-white.png);
+  }
+}
+
+.sub-information__item img {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.sub-information__item br {
+  display: block;
+  @include mq(md) {
+    display: none;
+  }
+}
+
+.sub-information__item:hover,
+.sub-information__item.is-active {
+  background-color: $green;
+  color: $white;
+}
+
+.sub-information__contents {
+  margin-top: rem(14);
+  @include mq(md) {
+    margin-top: rem(23);
+  }
+}
+
+.sub-information__content {
+  border: 2px solid $green;
+  padding: rem(24);
+  display: none;
+  @include mq(md) {
+    padding-top: rem(10);
+    justify-content: center;
+    align-items: center;
+    max-width: rem(1080);
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: initial;
+    padding: 0;
+    gap: rem(47);
+    padding-top: rem(15);
+    padding-bottom: rem(15);
+  }
+}
+
+.sub-information__content.is-active {
+  display: flex;
+  flex-direction: column;
+  @include mq(md) {
+    flex-direction: row;
+  }
+}
+
+.sub-information__img {
+  margin-top: rem(7);
+  width: 100%;
+  @include mq(md) {
+    margin-top: rem(0);
+    max-width: 46%;
+  }
+}
+
+.sub-information__img img {
+  aspect-ratio: 345 / 227;
+  object-fit: cover;
+}
+
+.sub-information__text {
+  margin-top: rem(0);
+  @include mq(md) {
+    margin-top: rem(0);
+    margin-left: rem(0);
+    max-width: calc(492 / 1080  * 100%);
+    width: 100%;
+  }
+}
+
+.sub-information__header {
+  border-bottom: 1px solid $green;
+  padding-bottom: 3px;
+}
+
+.sub-information__title {
+  font-size: rem(24);
+  font-weight: $bold;
+  line-height: calc(24 / 20);
+  @include mq(md) {
+    line-height: 1.7;
+  }
+}
+
+.sub-information__body {
+  margin-top: rem(8);
+  font-size: rem(16);
+  line-height: calc( 24 / 16);
+}
+
+// .sub-information__contact {
+//     margin-top: rem(17);
+//     @include mq(md) {
+//       margin-top: rem(40);
+//     }
+// }
+
+
+
+
+
+
+
+
+
+

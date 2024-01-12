@@ -1,0 +1,25 @@
+@use "global" as *;
+
+.sub-price {
+
+}
+
+.sub-price__inner.inner{
+    border-collapse:collapse;
+    max-width: rem(600);
+    width: 100%;
+    @include mq(md) {
+        max-width: rem(700);
+        margin-left: auto;
+        margin-right: auto;
+        padding-block: 0;
+    }
+}
+
+.sub-price__contact {
+    margin-top: rem(100);
+	@include mq(md) {
+		margin-top: rem(120);
+	}
+}
+

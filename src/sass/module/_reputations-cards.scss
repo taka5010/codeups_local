@@ -1,0 +1,5 @@
+@use "global" as *;
+
+.reputations-cards__item + .reputations-cards__item {
+    margin-top: rem(20);
+}

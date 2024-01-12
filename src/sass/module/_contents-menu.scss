@@ -1,0 +1,43 @@
+@use "global" as *;
+
+
+.contents-menu{
+
+}
+
+.contents-menu__items {
+    text-transform: capitalize;
+    font-size: rem(14);
+    line-height: calc(22 / 14);
+    color: $green;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: rem(20);
+    row-gap: rem(14);
+    text-align: center;
+    position: relative;
+    @include mq(md) {
+        grid-template-columns: repeat(4, 1fr);
+        column-gap: rem(32); 
+    }
+}
+
+.contents-menu__items li {
+    border: 1px solid $green;
+    white-space: nowrap;
+    background-color: $white;
+}
+
+.contents-menu__items a {
+    display: block;
+    padding: 6px 25px;
+    height: 100%;
+    width: 100%;
+}
+
+.contents-menu__items li:hover,
+.contents-menu__items li .current {
+    background-color: $green;
+    color: $white;
+    transition: 0.5s;
+}

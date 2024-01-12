@@ -1,0 +1,51 @@
+@use "global" as *;
+
+
+
+.campaign .swiper-slide:first-child {
+  margin-left: 14px;
+  @include mq(md) {
+    margin-left: rem(180);
+  }
+}
+
+.campaign .swiper-slide {
+  height: auto;
+}
+
+.campaign__items {
+  margin-top: rem(28);
+  position: relative;
+  width: 100vw;
+  margin: 0 calc(50% - 50vw);
+  @include mq(md) {
+    margin-top: rem(38);
+  }
+}
+
+.campaign__container {
+  position: relative;
+  padding-bottom: 10px;
+  overflow: hidden; 
+  .swiper {
+    overflow: visible;
+  }
+
+}
+.campaign__btn {
+  text-align: center;
+  margin-top: rem(30);
+  @include mq(md) {
+    margin-top: rem(71);
+  }
+}
+
+.campaign__pagnation {
+  margin-top: rem(78);
+  @include mq(md) {
+      max-width: rem(444);
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+}

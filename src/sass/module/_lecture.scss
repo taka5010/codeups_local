@@ -1,0 +1,52 @@
+@use "global" as *;
+
+.lecture {
+  // margin-top: rem(40);
+}
+
+.lecture + .lecture {
+  margin-top: rem(36);
+  margin-top: rem(40);
+}
+
+.lecture__name {
+  font-size: rem(16);
+  font-weight: $bold;
+  line-height: calc( 24 / 16);
+  border-bottom: 1px solid $green;
+  padding-bottom: 3px;
+
+}
+
+.lecture__menus {
+  // margin-top: rem(4);
+}
+
+.lecture__menu {
+  display: flex;
+  justify-content: space-between;
+  font-size: rem(14);
+  line-height: calc(24 / 14);
+  margin-top: rem(8);
+  @include mq(md) {
+    font-size: rem(16);
+    margin-top: rem(4);
+  }
+}
+
+.lecture__menu:first-of-type {
+  margin-top: rem(8);
+  @include mq(md) {
+    margin-top: rem(6);
+  }
+}
+
+.lecture__course br {
+  display: none;
+}
+
+.lecture__pay {
+  margin-left: rem(40);
+}
+
+

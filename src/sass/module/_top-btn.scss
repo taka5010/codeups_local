@@ -1,0 +1,55 @@
+@use "global" as *;
+
+.top-btn{
+  position: relative;
+  border: 1px solid #408F95;
+  border-radius: 50%;
+  display: block;
+  height: rem(48);
+  width: rem(48);
+  transition: 0.5s;
+  @include mq(md) {
+    height: rem(80);
+    width: rem(80);
+  }
+}
+
+.top-btn::before{
+  border: 1px solid #408F95;
+  border-bottom: 0;
+  border-left: 0;
+  box-sizing: border-box;
+  content: "";
+  position: absolute;
+  top: rem(8);
+  transform-origin: bottom left;
+  transition: 0.5s;
+  width: rem(10);
+  left: 50%;
+  transform: rotate(135deg);
+  @include mq(md) {
+    top: rem(18);
+    width: 0.65em;
+
+  }
+}
+
+.top-btn::after{
+  position: absolute;
+  background: currentColor;
+  color: #408F95;
+  content: "";
+  display: inline-block;
+  height: rem(28);
+  line-height: 1;
+  top: -3.4375rem;
+  vertical-align: middle;
+  width: rem(1);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s;
+  @include mq(md) {
+    height: rem(40);
+  }
+}

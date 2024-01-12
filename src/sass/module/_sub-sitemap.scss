@@ -1,0 +1,37 @@
+@use "global" as *;
+
+.sub-sitemap {
+
+}
+.sub-sitemap__inner.inner {
+    padding-left: rem(20);
+    padding-right: rem(20);
+    @include mq(md) {
+        padding-left: rem(25);
+        padding-right: rem(25);
+    }
+}
+
+.sub-sitemap__lists {
+    position: relative;
+}
+
+.sub-sitemap__lists .nav__item:first-child::before {
+    content: "";
+    width: rem(18);
+    height: rem(18);
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: url(../images/common/hitode-green.png);
+    background-size: contain;
+}
+
+.sub-sitemap__contact {
+    margin-top: rem(84);
+    @include mq(md) {
+        margin-top: rem(110);
+    }
+}
+

@@ -1,0 +1,24 @@
+@use "global" as *;
+
+.sub-2column {
+    display: block;
+    @include mq(md) {
+        display: grid;
+        grid-template-columns: calc( 706 / 1080 * 100%) calc( 294 / 1080 * 100%);;
+        column-gap: rem(80);
+    }
+}
+
+.sub-2column__inner.inner {
+    padding-left: rem(15);
+    padding-right: rem(15);
+    @include mq(md) {
+        padding-left: rem(25);
+        padding-right: rem(25);
+    }
+}
+
+.sub-2column__wrapper {
+    position: relative;
+}
+

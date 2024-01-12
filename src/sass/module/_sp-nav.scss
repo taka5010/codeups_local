@@ -1,0 +1,76 @@
+@use "global" as *;
+
+.sp-nav {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: $green;
+  width: 100%;
+  color: $white; 
+  // padding: rem(105) rem(37) rem(100) rem(37);
+  padding-top: 0;
+  }
+  
+
+
+  .sp-nav__scroll {
+    height: 100vh;
+    overflow: scroll;
+    margin-top: rem(80);
+    padding-bottom: rem(80);
+  }
+
+
+
+  .sp-nav__lists {
+    display: flex;
+    gap: rem(29);
+    margin: auto;
+    width: rem(316);
+  }
+
+  .sp-nav__items {
+    display: flex;
+    flex-flow: column wrap;
+    height: 100%;
+    gap: 0 rem(20);
+  }
+
+  .sp-nav__item {
+    padding: rem(12) rem(0);
+    // padding-top: rem(10);
+    // padding-bottom: rem(8);
+    line-height: calc(18 / 16);
+  }
+
+  .sp-nav__item--title {
+    position: relative;
+    margin-top: rem(27);
+    margin-bottom: rem(13);
+    padding: 0;
+  }
+  .sp-nav__item--title:first-child {
+    margin-top: rem(0);
+    margin-bottom: rem(12);
+  }
+
+  .sp-nav__item--title::before {
+    content: "";
+    width: rem(18);
+    height: rem(18);
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    background-image: url(../images/common/nav_title-hitode.png);
+    left: rem(-22);
+    background-size: contain;
+
+  }
+
+.sp-nav__item span {
+  font-weight: $bold;
+  margin-top: 10px;
+}
+

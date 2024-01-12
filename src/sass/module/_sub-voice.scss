@@ -1,0 +1,29 @@
+@use "global" as *;
+
+.sub-voice {
+
+}
+
+.sub-voice__menu {
+    @include mq(md) {
+        max-width: rem(744);
+        width: 100%;
+    }
+}
+
+.sub-voice__voices {
+    margin-top: rem(38);
+    position: relative;
+    z-index: 0;
+}
+
+.sub-voice__contact {
+    margin-top: rem(100);
+    @include mq(md) {
+        margin-top: rem(120);
+    }
+}
+
+
+
+

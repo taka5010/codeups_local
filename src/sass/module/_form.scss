@@ -1,0 +1,120 @@
+@use "global" as *;
+
+.form {
+	z-index: 10;
+    position: relative;
+}
+
+.form dl {
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px dotted $green;
+	padding-bottom: rem(24);
+	margin-top: rem(23);
+	@include mq(md) {
+		// gap: rem(106);
+		flex-direction: row;
+		justify-content: space-between;
+		padding-bottom: rem(40);
+		margin-top: rem(40);
+	}
+}
+.form dl:first-child {
+	margin-top: 0;
+}
+
+// .form dl:nth-child(n + 2) {
+// 	margin-top: rem(23);
+// }
+
+.form dd {
+	margin-top: rem(15);
+	width: 100%;
+	@include mq(md) {
+		width: calc(480 / 700 * 100%);
+		display: flex;
+		flex-direction: column;
+		margin-top: rem(0);
+	}
+}
+
+
+.form input {
+	height: rem(40);
+	margin-top: 0;
+}
+::placeholder {
+	color: #DDF0F1;
+  }
+
+.form__title {
+	font-weight: $bold;
+	align-items: center;
+	display: flex;
+	gap: rem(8);
+	@include mq(md) {
+		align-items: self-start;
+	}
+	
+
+}
+
+.form__title span {
+	font-weight: normal;
+	background-color: #C94800;
+	color: $white;
+	font-size: rem(12);
+	padding: rem(1) rem(11);
+	letter-spacing:0.4em;
+	text-indent: 0.4em;
+}
+
+.form__btn {
+	text-align: center;
+	margin-top: rem(24);
+	@include mq(md) {
+		margin-top: rem(40);
+	}
+}
+
+.form__confirmation {
+	margin-top: rem(34);
+	width: calc( 282 / 345 * 100%);
+	margin-left: auto;
+	margin-right: auto;
+	@include mq(md) {
+		text-align: center;
+		margin-top: rem(70);
+	}
+}
+
+.form__confirmation.form__confirmation span {
+	margin: 0;
+	font-size: rem(14);
+	padding-left: rem(0);
+
+}
+.form__confirmation.form__confirmation span::before {
+	top: 0;
+	transform: translateY(0);
+	width: rem(22);
+	height: rem(22);
+	left: rem(-35);
+}
+
+.form__confirmation [type=checkbox]:checked + span::after {
+    border-bottom: 3px solid #f00;
+    border-left: 3px solid #f00;
+    content: "";
+    display: block;
+    height: rem(9);
+    left: rem(-33);
+    margin-left: 0.1em;
+    margin-top: -0.1em;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    width: rem(16);
+}
+

@@ -1,0 +1,14 @@
+@use "global" as *;
+
+.reputation-card__body {
+    margin-top: rem(10);
+}
+
+.reputation-card__category {
+    font-size: rem(12);
+}
+
+.reputation-card__text {
+    font-size: rem(24);
+    margin-top: rem(6);
+}

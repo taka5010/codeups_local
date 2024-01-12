@@ -1,0 +1,119 @@
+@use "global" as *;
+
+.information {
+  position: relative;
+  background-color: $bg-green;
+  padding-top: rem(84);
+  padding-bottom: rem(84);
+  z-index: initial;
+  @include mq(md) {
+    padding-top: rem(100);
+    padding-bottom: rem(102);
+  }
+}
+
+// .information__inner {
+//   padding-left: rem(15);
+//   padding-right: rem(15);
+//   @include mq(md) {
+//     padding-left: $padding-pc;
+//     padding-right: $padding-pc
+//   }
+// }
+
+.information__content {
+  margin-top: rem(28);
+  @include mq(md) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: rem(1080);
+    width: 100%;
+    margin: auto;
+    margin-top: rem(38);
+  }
+}
+.information__img {
+  margin-top: rem(24);
+  width: 100%;
+  @include mq(md) {
+    // max-width: rem(540);
+    max-width: 50%;
+  }
+
+}
+
+.information__img img {
+  aspect-ratio: 345 / 227;
+  object-fit: cover;
+}
+
+.information__img.js-inview {
+  // margin-bottom: rem(23);
+  margin: 0;
+  @include mq(md) {
+    // margin-top: rem(38);
+  }
+}
+
+.information__text {
+  margin-top: rem(25);
+  @include mq(md) {
+    margin-top: rem(0);
+    margin-left: rem(48);
+    max-width: calc(492 / 1080  * 100%);
+    width: 100%;
+  }
+}
+
+.information__header {
+  border-bottom: 1px solid $green;
+  padding-bottom: 3px;
+}
+
+.information__title {
+  font-size: rem(20);
+  font-weight: $bold;
+  line-height: calc(24 / 20);
+  @include mq(md) {
+    font-size: rem(24);
+    line-height: 1.7;
+  }
+}
+
+.information__title--info {
+  font-size: rem(24);
+  @include mq(md) {
+    font-size: rem(24);
+    line-height: 1.7;
+  }
+}
+
+.information__body {
+  margin-top: rem(8);
+  font-size: rem(16);
+  line-height: calc( 24 / 16);
+}
+
+.information__btn {
+  text-align: center;
+  margin-top: rem(41);
+  position: relative;
+  z-index: 10;
+  @include mq(md) {
+    margin-top: rem(80);
+  }
+}
+
+// information-page
+
+// .information__list{
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr);
+//   column-gap: rem(20);
+//   text-align: center;
+// }
+
+// .information__list li {
+//   background-color: $bg-green;
+// }

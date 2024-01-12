@@ -1,0 +1,167 @@
+@use "global" as *;
+
+.sideber {
+
+}
+
+.sideber__contents {
+    // margin-top: rem(80);
+    padding-left: 20px;
+    padding-right: 20px;
+    @include mq(md) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.sideber__contents:first-child {
+    margin-top: rem(80);
+    @include mq(md) {
+        margin-top: 0;
+    }
+}
+.sideber__contents + .sideber__contents {
+    margin-top: rem(80);
+}
+
+.sideber__header {
+    position: relative;
+    font-size: rem(24);
+    font-weight: normal;
+    padding-top: rem(7);
+    padding-bottom: rem(7);
+    padding-left: rem(82);
+
+}
+.sideber__header::before{
+    content: "";
+    position: absolute;
+    display: block;
+    background-color: $green;
+    width: rem(8);
+    height: 100%;
+    top: 0;
+    left: rem(0);
+}
+.sideber__header::after {
+    background-image: url(../images/common/sideber_titlelogo.png);
+    content: "";
+    display: block;
+    position: absolute;
+    background-repeat: no-repeat;
+    width: rem(50);
+    height: rem(50);
+    background-size: contain;
+    top:0;
+    left: rem(24);
+}
+
+.sideber__articles{
+    margin-top: rem(24);
+}
+
+.sideber__reputations {
+    margin-top: rem(24);
+}
+
+.sideber__campaigns {
+    margin-top: rem(24);
+}
+
+.sideber__campaigns .campaign-card__img img  {
+    aspect-ratio: 294/188;
+    object-fit: cover;
+    }
+
+.sideber__campaigns .campaign-card__body  {
+    @include mq(md) {
+        padding-top: rem(10);
+        padding-bottom: rem(20);
+    }
+}
+.sideber__campaigns .campaign-card__pay-pre {
+    @include mq(md) {
+        font-size: rem(20);
+    }
+}
+.sideber__campaigns .campaign-card__pay-post {
+    @include mq(md) {
+        font-size: rem(32);
+    }
+}
+.sideber__campaigns .campaign-card__info  {
+    @include mq(md) {
+        margin-top: rem(10);
+    }
+}
+.sideber__campaigns .campaign-card__text {
+    @include mq(md) {
+        font-size: rem(14);
+    }
+}
+
+.sideber__time {
+    margin-top: rem(24);
+    color: $green;
+    font-size: rem(24);
+}
+
+.sideber__year {
+    position: relative;
+    padding-left: rem(32);
+    cursor: pointer;
+    
+}
+.sideber__year::before {
+    position: absolute;
+    content: "";
+    background-image: url(../images/common/sileber__arrow.png);
+    display: block;
+    background-repeat: no-repeat;
+    width: rem(24);
+    height: rem(24);
+    background-size: contain;
+    top:50%;
+    transform: translateY(-50%);
+    left: rem(6);
+    transition: ease 0.3s;
+}
+
+.sideber__year.is-open::before  {
+    transform: rotate(90deg) translate(rem(-7), rem(3));
+}
+
+.sideber__month {
+    display: none;
+  }
+
+.sideber__month  li {
+    position: relative;
+    padding-left: rem(56);
+    margin-top: rem(3);
+}
+
+.sideber__month li::before {
+    position: absolute;
+    content: "";
+    background-image: url(../images/common/sileber__arrow.png);
+    display: block;
+    background-repeat: no-repeat;
+    width: rem(24);
+    height: rem(24);
+    background-size: contain;
+    top:50%;
+    transform: translateY(-50%);
+    left: rem(30);
+}
+
+.sideber__month a {
+    display: block;
+    height: 100%;
+    width: 100%
+}
+
+.sideber__btn {
+    text-align: center;
+    margin-top: rem(40);
+}

@@ -1,0 +1,70 @@
+
+@use "global" as *;
+
+.nf {
+    position: relative;
+    // height: rem(460);
+    background-image: url(../images/common/404_logo-sp.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    color: $white;
+    margin-top: rem(80);
+    @include mq(md) {
+        height: rem(698);
+        background-image: url(../images/common/404_logo-pc.png);
+        background-position: 24%;
+        margin-top: rem(90);
+    }
+}
+
+.nf__inner {
+    text-align: center;
+    padding-top: rem(55);
+    @include mq(md) {
+        padding-top: rem(0);
+        margin-top: rem(133);;
+    }
+}
+
+.nf__box {
+
+}
+
+.nf__title {
+    font-size: rem(80);
+    letter-spacing: 0.5em;
+    text-indent: 0.5em;
+    font-family: $number-font-family;
+    line-height: 1;
+    font-weight: normal;
+    @include mq(md) {
+        font-size: rem(160);
+    } 
+}
+
+.nf__text {
+    line-height: calc(24 / 16);
+    margin-top: rem(7);
+    @include mq(md) {
+        margin-top: rem(43);
+    }
+}
+
+.nf__btn {
+    position: relative;
+    text-align: center;
+    margin-top: rem(40);
+    z-index: 1;
+    @include mq(md) {
+        margin-top: rem(80);
+    }
+}
+
+.nf__footer{
+    @include mq(md) {
+        margin-top: rem(0);
+    }
+}
+
+

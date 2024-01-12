@@ -1,0 +1,159 @@
+@use "global" as *;
+
+
+
+
+
+.swiper-button-next,
+.swiper-button-prev {
+  display: none;
+  @include mq(md) {
+    border: 1px solid #408F95;
+    border-radius: 50%;
+    display: block;
+    height: rem(80);
+    width: rem(80);
+    top: rem(-82);
+    transition: 0.5s;
+  }
+}
+
+.swiper-button-next::before,
+.swiper-button-prev::before {
+  // display: none;
+  @include mq(md) {
+    content: '';
+    width: 0.65em;
+    border: 1px solid $green;
+    border-left: 0;
+    border-bottom: 0;
+    transform-origin: top right;
+    position: absolute;
+    top: 50%;
+    box-sizing: border-box;
+    transition: 0.5s;
+  }
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  // display: none;
+  @include mq(md) {
+    position: absolute;
+    display: inline-block;
+    background: currentColor;
+    color: #408F95;
+    content: "";
+    display: inline-block;
+    height: 0.0625rem;
+    line-height: 1;
+    top: -3.4375rem;
+    vertical-align: middle;
+    width: 2.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s;
+  }
+}
+
+.swiper-button-prev {
+  left: calc(50% + min(25vw, rem(300)));
+}
+
+.swiper-button-next {
+  right:calc(50% - min(45vw,rem(540)));
+}
+
+.swiper-button-prev::before{
+  left: rem(9);
+  transform: rotate(135deg) translateY(-50%);
+}
+
+.swiper-button-next::before{
+  right: rem(19);
+  transform: rotate(45deg) translateY(-50%);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: $green;
+  border-color: $white;
+}
+.swiper-button-next:hover::before,
+.swiper-button-prev:hover::before {
+  border-color: $white;
+}
+.swiper-button-next:hover::after,
+.swiper-button-prev:hover::after {
+  color: $white;
+}
+// .swiper-button-next,
+// .swiper-button-prev{
+//   display: inline-block;
+//   vertical-align: middle;
+//   color: $green;
+//   line-height: 1;
+//   width: rem(40);
+//   height: rem(1);
+//   background: currentColor;
+//   top: rem(-55);
+// }
+
+// .swiper-button-next::before,
+// .swiper-button-prev::before{
+//   content: '';
+//   width: 0.65em;
+//   border: 1px solid $green;
+//   border-left: 0;
+//   border-bottom: 0;
+//   transform-origin: top right;
+//   position: absolute;
+//   top: 50%;
+//   box-sizing: border-box;
+// }
+
+// .swiper-button-next::after,
+// .swiper-button-prev::after{
+//   transform: translate(-50%, -50%);
+//   border: 1px solid #408F95;
+//   border-radius: 50%;
+//   content: "";
+//   display: block;
+//   height: rem(80);
+//   width: rem(80);
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+// }
+
+// .swiper-button-prev {
+//   left: 66%;
+// }
+
+// .swiper-button-next {
+//   right: 20%;
+// }
+
+// .swiper-button-prev::before{
+//   left: rem(-10);
+//   transform: rotate(135deg) translateY(-50%);
+// }
+
+// .swiper-button-next::before{
+//   right: 0;
+//   transform: rotate(45deg) translateY(-50%);
+// }
+
+// .swiper-button-next:hover {
+//   color: $white;
+// }
+// .swiper-button-next:hover::before {
+//   color: $white;
+// }
+// .swiper-button-next:hover::after {
+//   color: $white;
+//   background-color: $green;
+//   border: 1px solid $white;
+// }
+

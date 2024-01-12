@@ -1,0 +1,177 @@
+@use "global" as *;
+
+.button {
+  position: relative;
+  display: inline-block;
+  font-size: rem(14);
+  font-size: 14px;
+  font-family: $en-font-family;
+  font-weight: $normal;
+  text-transform: capitalize;
+  color: $white;
+  background-color: $green;
+  padding: rem(15) rem(37) rem(15) rem(39);
+  border: 2px solid $green;
+  transition: 0.3s;
+  margin-right: rem(6);
+}
+
+.button--send {
+  padding: rem(5) rem(50);
+  text-transform: uppercase;
+}
+
+.button--send br {
+  display: none;
+}
+
+.button--send .wpcf7-spinner {
+  display: none;
+}
+
+.button--404 {
+  color: $green;
+  background-color: $white;
+}
+
+.button:hover {
+  background-color: $white;
+  color: $green;
+}
+.button--404:hover {
+  background-color: $green;
+  color: $white;
+  border: 2px solid $white;
+}
+
+.button::before {
+  background: $white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 100%;
+  transform: scale(0, 1);
+  transform-origin: left top;
+  transition: .2s cubic-bezier(0.45, 0, 0.55, 1);
+  // z-index: -1;
+}
+
+.button--404::before {
+  background: $green;
+}
+
+.button:hover::before {
+  transform: scale(1, 1);
+}
+
+
+
+.button::after {
+  content:"";
+  display: inline-block;
+  position: absolute;
+  top: rem(7);
+  left: rem(7);
+  width: 100%;
+  height: 100%;
+  border: rem(2) solid $green;
+  z-index: -1;
+}
+
+.button--404::after {
+  border: rem(2) solid $white;
+}
+
+.button__text {
+  position: relative;
+  text-transform: lowercase;
+  display: inline-block;
+}
+
+.button__text::first-letter {
+  text-transform: capitalize;
+}
+
+.button__arrow {
+  display: inline-block;
+  vertical-align: middle;
+  // color: $green;
+  line-height: 1;
+  position: relative;
+  width: rem(40);
+  height: rem(1);
+  background: $white;
+  margin-left: rem(8);
+}
+
+.button__arrow--404 {
+  background-color: $green;
+}
+
+
+.button__arrow::after {
+    content:"";
+  position: absolute;
+  width: rem(10);
+  height:rem(1);
+  background:$white;
+  transform: rotate(45deg);
+  top: 0;
+  right: 0;
+  transform-origin: top right;
+}
+
+.button__arrow--404::after {
+  background-color: $green;
+}
+
+.button:hover .button__text {
+  color: $green;
+}
+
+.button:hover .button__arrow {
+  background: $green;
+}
+
+.button:hover .button__arrow::after {
+  background: $green;
+}
+
+.button--404:hover .button__text--404 {
+  color: $white;
+}
+
+.button--404:hover .button__arrow--404 {
+  background: $white;
+}
+
+.button--404:hover .button__arrow--404::after {
+  background: $white;
+}
+
+
+// .button__text::before {
+//   content:"";
+//   position: absolute;
+//   top: rem(8);
+//   left: rem(75);
+//   position: absolute;
+//   width: rem(10);
+//   height:rem(1);
+//   background:$white;
+//   transform: rotate(45deg);
+// }
+// .button__text::after {
+//   content:"";
+//   top: 50%;
+//   left: rem(44);
+//   transform: translateY(-50%);
+//   position: absolute;
+//   width: rem(40);
+//   height: 1px;
+//   background:$white;
+// }
+
+

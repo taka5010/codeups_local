@@ -1,0 +1,116 @@
+@use "global" as *;
+
+.price-item {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    @include mq(md) {
+        flex-direction: row;
+    }
+}
+
+.price-item + .price-item {
+    margin-top: rem(40);
+    @include mq(md) {
+        margin-top: rem(77);
+    }
+}
+
+
+.price-item__header {
+    background-color: $green;
+    color: $white;
+    font-weight: $bold;
+    height: rem(40);
+    font-size: rem(16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: rem(8);
+    @include mq(md) {
+        flex-direction: column-reverse;
+        width: calc(200 / 700 * 100%);
+        height: initial;
+    }
+}
+
+
+.price-item__header::before {
+    display: block;
+    background-image: url(../images/common/info_logo1-white.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    height: rem(24);
+    width: rem(24);
+    @include mq(md) {
+        height: rem(64);
+        width: rem(64);
+    }
+}
+
+.price-item__body {
+    display: grid;
+    grid-template-columns: calc(240 / 345 * 100%) calc(105 / 345 * 100%) ;
+    @include mq(md) {
+        width: calc(502 / 700 * 100%);
+        border-top: 1px solid $green;
+        grid-template-columns: calc(340 / 502 * 100%) calc(162 / 502 * 100%) ;
+    }
+}
+
+.price-item__left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: rem(60);
+    @include mq(md) {
+        justify-content: left;
+        padding-left: rem(10);
+    }
+}
+
+.price-item__right {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    padding-right: rem(15);
+}
+
+.price-item dt {
+    border-bottom: 1px solid $green;
+    border-left: 1px solid $green;
+    border-right: 1px solid $green;
+}
+.price-item dt br {
+    display: block;
+    @include mq(md) {
+        display: none;
+    }
+
+
+}
+.price-item dd {
+    border-bottom: 1px solid $green;
+    border-right: 1px solid $green;
+}
+
+.price-item__body {
+    // height: rem(60);
+}
+
+.price-item__type {
+    text-align: center;
+    width: calc( 240 /345 * 100% );
+}
+.price-item__pay {
+    text-align: right;
+
+}
+
+
+
+//   テスト
+
+

@@ -1,0 +1,74 @@
+@use "global" as *;
+
+.sub-mv {
+  position: relative;
+  height: rem(460);
+  @include mq(md) {
+    height: rem(548);
+  }
+}
+
+.sub-mv picture {
+  height: 100%;
+}
+
+.sub-mv img {
+  aspect-ratio: 375 / 460;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  @include mq(md) {
+    aspect-ratio: 1440 / 548;
+  }
+}
+
+.sub-mv__inner {
+  height: inherit;
+}
+
+.sub-mv__text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: $en-font-family;
+  color: $white;
+  z-index: 500;
+  @include mq(md) {
+    margin-top: rem(50);
+  }
+}
+
+.sub-mv__maintitle {
+  font-size: rem(40);
+  font-family: $number-font-family;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: lowercase; 
+  white-space: nowrap;
+
+  @include mq(md) {
+    font-size: rem(80);
+    line-height: 1;
+  }
+}
+
+.sub-mv__maintitle--sitemap {
+  text-transform: initial;
+}
+
+.sub-mv__maintitle::first-letter {
+  text-transform: capitalize;
+}
+
+.sub-mv__maintitle--faq {
+  text-transform:capitalize
+}
+
+.sub-mv__maintitle--privacy {
+  text-transform: capitalize;
+}
+
+
+
+

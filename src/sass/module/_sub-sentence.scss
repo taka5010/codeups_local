@@ -1,0 +1,18 @@
+@use "global" as *;
+
+.sub-sentence p {
+    margin-top: rem(33);
+}
+
+.sub-sentence h2 {
+    font-size: rem(24);
+    font-weight: $medium;
+    @include mq(md) {
+        font-size: rem(32);
+    }
+}
+
+.sub-sentence ol {
+    padding-left: rem(23);
+}
+

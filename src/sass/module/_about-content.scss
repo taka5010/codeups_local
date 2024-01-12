@@ -1,0 +1,300 @@
+@use "global" as *;
+
+.about-content {
+  margin-top: rem(50);
+  @include mq(md) {
+    position: relative;
+    margin-top: rem(148);
+  }
+}
+
+.about-content__inner {
+  max-width: rem(600);
+  position: relative;
+  @include mq(md) {
+    // padding-left: $padding-pc;
+    // padding-right: $padding-pc;
+    max-width: rem(1130);
+    width: 100%;
+    margin: auto;
+  }
+}
+
+.about-content__inner::before {
+  position: absolute;
+  background-image: url(../images/common/contents-logo-1.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  content: "";
+  display: block;
+  width: calc(120 / 375 * 100%);
+  padding-bottom: calc(55 / 375 * 100%);
+  top: rem(-25);
+  @include mq(md) {
+    left: calc(50% - min(50vw, 613px));
+    top: rem(-67);
+    max-width: rem(301);
+    width: calc(301 / 1130 * 100%);
+    padding-bottom: calc(131 / 1130 * 100%);
+    z-index: -5;
+  }
+}
+.about-content__inner::after {
+  display: none;
+  @include mq(md) {
+    position: absolute;
+    background-image: url(../images/common/contents-logo-2.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    display: block;
+    bottom: -174px;
+    right: calc(50% - min(50vw, 637px));
+    max-width: rem(301);
+    width: calc(301 / 1130 * 100%);
+    padding-bottom: calc(131 / 1130 * 100%);
+    z-index: -5;
+  }
+}
+
+.about-content__images {
+  display: flex;
+  justify-content: center;
+  margin-top: rem(28);
+  @include mq(md) {
+    margin-top: rem(0);
+  }
+}
+
+.about-content__left-image {
+  z-index: 20;
+  max-width: calc(128 / 345 * 100%);
+  width: 100%;
+  display: none;
+  @include mq(md) {
+    display: block;
+    width: calc( 399 / 1080 * 100%);
+    width: 100%;
+  }
+}
+
+.about-content__left-image img {
+  aspect-ratio: 128 / 194;
+  object-fit: cover;
+  @include mq(md) {
+    aspect-ratio: 399 / 606;
+  }
+}
+
+.about-content__right-image {
+  // margin-left: -18.5%;
+  // margin-top: 7.4%;
+  // max-width: calc(281 / 345 * 100%);
+  width: 100%;
+  @include mq(md) {
+    position: relative;
+    max-width: rem(880);
+    width: 100%;
+    margin-top: rem(81);
+    margin-left: -18.5%;
+    width: calc( 880 / 1080 * 100%);
+  }
+}
+
+.about-content__right-image img {
+  aspect-ratio: 281 / 186;
+  object-fit: cover;
+  @include mq(md) {
+    aspect-ratio: 880 / 581;
+  }
+}
+
+.about-content__art {
+  display: none;
+  @include mq(md) {
+    display: block;
+    position: absolute;
+    width: rem(194);
+    height: auto;
+    width: 18%;
+    top: 155%;
+    right:calc(50% - min(50vw,rem(559)));
+  }
+}
+
+.about-content__art img {
+  aspect-ratio: initial;
+  object-fit: contain;
+}
+
+.about-content__text {
+  // position: relative;
+  margin-top: rem(40);
+  @include mq(md) {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    // justify-content: center;
+    position: absolute;
+    z-index: 505;
+    // max-width: calc(840 / 880 * 100%);
+    max-width: 840px;
+    width: 100%;
+    // width: calc(840 / 880 * 100%);
+    left:calc(50% - rem(335));
+    // margin-left: 17%;
+    top: 30.3%;
+    // transform: translateY(-50%);
+    margin-top: 0;
+  }
+}
+.about-content__header {
+  position: absolute;
+  top: rem(25);
+  left: rem(39);
+  font-size: rem(40);
+  color: $white;
+  text-align: left;
+  font-family: $en-font-family;
+  line-height: 1;
+  white-space: nowrap;
+  @include mq(md) {
+    position: initial;
+    font-size: rem(80);
+    line-height: calc( 100 / 80);
+    color: $white;
+  }
+}
+
+.about-content__body {
+  margin-top: rem(16);
+  @include mq(md) {
+    max-width: calc(400 / 880 * 100%);
+    margin-top: 0;
+  }
+}
+.about-content__detail {
+  font-size: rem(16);
+  line-height: calc(24 / 16);
+  @include mq(md) {
+    max-width: rem(400);
+    color: $white;
+    margin-left: 20px;
+  }
+}
+
+.about-content__btn {
+  text-align: center;
+  margin-top: rem(15);
+  @include mq(md) {
+    margin-left: rem(20);
+    margin-top: rem(40);
+  }
+}
+
+// -----------------test
+.t-about-content {
+  height: 100%;
+}
+
+.t-about-content__text {
+  position: relative;
+  margin-top: rem(50);
+  @include mq(md) {
+    display: flex;
+    column-gap: 20px;
+    align-items: center;
+    margin-top: rem(147);
+    margin-right: auto;
+    padding-top: rem(200);
+    padding-left: rem(200);
+    width: 100%;
+  }
+}
+
+.t-about-content__header {
+  background-image: url(../images/common/about_img-right-sp.jpg)
+  
+}
+
+.t-about-content__header::before {
+  position: absolute;
+  content: "";
+  padding-top: calc( 228 / 345 * 100%);
+  width: 100%;
+  background-image: url(../images/common/about_img-right-sp.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: block;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  @include mq(md) {
+    width: calc(880 / 1080 * 100%);
+    padding-top: calc( 581 / 1080 * 100%);
+    left: initial;
+    top: rem(80);
+  }
+}
+.t-about-content__text::after {
+  display: none;
+  @include mq(md) {
+    position: absolute;
+    content: "";
+    width: 100%;
+    background-image: url(../images/common/about_img-left-pc.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: calc(400 / 1080 * 100%);
+    padding-top: calc( 606 / 1080 * 100%);
+  }
+}
+
+.t-about-content__header {
+  font-size: rem(40);
+  color: $white;
+  text-align: left;
+  font-family: $en-font-family;
+  line-height: 1;
+  white-space: nowrap;
+  padding-top: rem(26);
+  padding-left: rem(24);
+  @include mq(md) {
+    font-size: rem(80);
+    line-height: calc( 100 / 80);
+    color: $white;
+    padding-top: 0;
+    padding-left: 0;
+  }
+}
+
+.t-about-content__body {
+  margin-top: rem(161);
+  @include mq(md) {
+    margin-top: 0;
+  }
+}
+.t-about-content__detail {
+  font-size: rem(16);
+  line-height: calc(24 / 16);
+  @include mq(md) {
+    max-width: rem(400);
+    color: $white;
+    margin-left: 20px;
+  }
+}
+
+.about-gallery__items {
+  margin-top: rem(38);
+  }
+
+.about-gallery__fixed {
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}

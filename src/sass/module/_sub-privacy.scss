@@ -1,0 +1,14 @@
+@use "global" as *;
+
+
+.sub-privacy__inner.inner {
+    line-height: 2;
+    position: relative;
+    @include mq(md) {
+        max-width: rem(800);
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+

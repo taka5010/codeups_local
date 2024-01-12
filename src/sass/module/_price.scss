@@ -1,0 +1,101 @@
+@use "global" as *;
+
+.price {
+  padding-top: rem(84);
+  padding-bottom: rem(83);
+  position: relative;
+  background-color: $bg-green;
+  @include mq(md) {
+    padding-top: rem(99);
+    z-index: initial;
+    padding-bottom: rem(104);
+  }
+}
+
+.price::before {
+  display: none;
+  @include mq(md) {
+    background-image: url(../images/common/price_logo.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: "";
+    display: block;
+    padding-bottom: calc( 201 / 1440 * 100%);
+    left: calc(50% - min(48vw, 38.75rem));
+    max-width: rem(437);
+    position: absolute;
+    bottom: rem(60);
+    width: calc( 437 / 1440 * 100%);
+  }
+}
+
+.price__inner {
+  @include mq(md) {
+    position: relative;
+    max-width: rem(1130);
+  }
+}
+
+.price__content {
+  margin-top: rem(28);
+  @include mq(md) {
+    display: flex;
+    flex-direction:row-reverse;
+    column-gap: calc(93 / 1080 * 100%);
+    margin-top: rem(40);
+  }
+}
+// .price__content div .price__sp {
+//   display: block;
+//   @include mq(md) {
+//     display: none;
+//   }
+// }
+// .price__content div .price__pc {
+//   display: none;
+//   @include mq(md) {
+//     display: block
+//   }
+// }
+.price__img.js-inview {
+  margin: 0;
+}
+
+.price__img {
+  margin-top: rem(24);
+  @include mq(md) { 
+    width: calc( 492 / 1080 * 100%);
+    object-fit: cover;
+    margin-top: rem(0);
+  }
+}
+
+.price__img img {
+  aspect-ratio: 345 / 227;
+  object-fit: cover;
+  width: 100%;
+  @include mq(md) {
+    aspect-ratio: 492 / 746;
+  }
+}
+
+.price__info {
+  margin-top: rem(40);
+  @include mq(md) {
+    margin-top: rem(0);
+    width: calc( 492 / 1080 * 100%);
+  }
+
+}
+.price__btn {
+  text-align: center;
+  margin-top: rem(41);
+  position: relative;
+  z-index: 10;
+  @include mq(md) {
+    margin-top: rem(80);
+  }
+}
+
+
+

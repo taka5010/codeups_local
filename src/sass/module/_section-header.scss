@@ -1,0 +1,61 @@
+@use "global" as *;
+
+.section-header {
+  text-align: center;
+}
+
+.section-header__entitle {
+  font-size: rem(32);
+  font-family: $en-font-family;
+  font-weight: $normal;
+  line-height: 1;
+  text-transform: lowercase; 
+  @include mq(md) {
+    font-size: rem(40);
+  }
+}
+
+.section-header__entitle::first-letter {
+  color: $green;
+  text-transform: capitalize;
+}
+
+
+
+.section-header__entitle span {
+  text-transform: lowercase;
+}
+
+
+
+.section-header__entitle.section-header__entitle--contact {
+  font-size: rem(80);
+  @include mq(md) {
+    font-size: rem(80);
+  }
+}
+
+.section-header__jatitle {
+  margin-top: rem(8);
+  font-size: rem(12);
+  color: $green;
+  line-height: calc( 18 / 12 );
+  @include mq(md) {
+    margin-top: rem(8);
+  }
+}
+
+
+.section-header__entitle--blog,
+.section-header__jatitle--blog {
+  @include mq(md) {
+    color: $white
+  }
+}
+
+.section-header__entitle--blog::first-letter {
+  @include mq(md) {
+    color: $white;
+    text-transform: capitalize;
+  }
+}

@@ -1,0 +1,66 @@
+@use "global" as *;
+
+.blog {
+  padding-top: rem(82);
+  @include mq(md) {
+    position: relative;
+    padding-top: rem(99);
+  }
+}
+
+.blog::before {
+  @include mq(md) {
+    position: absolute;
+    content: "";
+    display: inline-block;
+    background-image: url(../images/common/blog_bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: rem(500);
+    top: 0;
+  }
+  
+}
+
+
+
+.blog__inner {
+  @include mq(md) {
+    position: relative;
+    max-width: rem(1130);
+  }
+}
+
+// .blog__inner::before {
+//   @include mq(md) {
+//     background-image: url(../images/common/blog_logo.png);
+//     background-repeat: no-repeat;
+//     background-size: contain;
+//     content: "";
+//     display: block;
+//     position: absolute;
+//     top: rem(23);
+//     left:calc(50% - min(48vw,rem(620)));
+//     max-width: rem(376.51);
+//     width: calc(376.51 / 1080 * 100%);
+//     height: 100%;
+    
+//   }
+// }
+
+.blog__btn {
+  margin-top: rem(38);
+  text-align: center;
+  @include mq(md) {
+    margin-top: rem(79);
+  }
+}
+
+.blog__items {
+  margin-top: rem(28);
+  @include mq(md) {
+    margin-top: rem(80);
+  }
+}
+

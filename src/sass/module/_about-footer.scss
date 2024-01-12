@@ -1,0 +1,7 @@
+@use "global" as *;
+
+.about__footer {
+    @include mq(md) {
+        margin-top: rem(162);
+    }
+}
