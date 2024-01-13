@@ -2,7 +2,7 @@
 <div class="sub-mv">
   <picture>
     <source srcset="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/campaign_mv-sp.jpg"
-      media="(max-width: 769px)" />
+      media="(max-width: 767px)" />
     <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/campaign_mv-pc.jpg" alt="２匹の魚の画像">
   </picture>
   <div class="sub-mv__text">

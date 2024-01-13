@@ -15,6 +15,23 @@ function add_theme_scripts() {
 
 // 管理画面のアイキャッチ表示
   add_theme_support( 'post-thumbnails' );
+//タグマネージャー追加
+  function add_gtag_script() {
+    ?>
+<script>
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+  dataLayer.push(arguments);
+}
+gtag('js', new Date());
+
+gtag('config', 'G-LWF4DFW6R9');
+</script>
+<?php
+}
+add_action('wp_head', 'add_gtag_script');
+
 
 // カスタム投稿の記事数調整
 function my_custom_post_count($query) {

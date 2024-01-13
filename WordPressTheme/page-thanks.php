@@ -24,4 +24,4 @@
     </div>
   </div>
 </div>
-<?php get_footer('sub'); ?>
+<?php get_footer(); ?>
