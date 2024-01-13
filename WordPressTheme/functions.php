@@ -1,12 +1,10 @@
-<?php 
+<?php
 function add_theme_scripts() {
     // Google Fonts
     wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Gotu&family=Lato:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&display=swap', array(), null );
-  
     // CSS
     wp_enqueue_style( 'swiper', 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css', array(), null );
     wp_enqueue_style( 'theme-style', get_theme_file_uri( '/assets/css/style.css' ), array(), null );
-  
     // JavaScript
     wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-3.6.0.js', array(), null, true );
     wp_enqueue_script( 'jquery-inview', get_theme_file_uri( '/assets/js/jquery.inview.min.js' ), array('jquery'), null, true );
@@ -14,10 +12,9 @@ function add_theme_scripts() {
     wp_enqueue_script( 'theme-script', get_theme_file_uri( '/assets/js/script.js' ), array('jquery'), null, true );
   }
   add_action( 'wp_enqueue_scripts', 'add_theme_scripts' );
-  
+
 // 管理画面のアイキャッチ表示
   add_theme_support( 'post-thumbnails' );
-
 
 // カスタム投稿の記事数調整
 function my_custom_post_count($query) {
@@ -94,19 +91,15 @@ function my_unregister_taxonomies() {
   return true;
 }
 add_action('init', 'my_unregister_taxonomies');
-
 //Contact Form 7 のカスタマイズ
 function filter_wpcf7_form_tag( $scanned_tag, $replace ) {
- 
   if(!empty($scanned_tag)){
- 
     //nameで判別
     if($scanned_tag['name'] == 'campaign-select'){
- 
       //カスタム投稿タイプの取得
       global $post;
       $args = array(
-        'posts_per_page' => -1, 
+        'posts_per_page' => -1,
         'post_type' => 'campaign',
         'order' => 'DESC',
         );
@@ -114,22 +107,16 @@ function filter_wpcf7_form_tag( $scanned_tag, $replace ) {
       if($customPosts){
         foreach($customPosts as $post){
           setup_postdata( $post );
- 
           $title = get_the_title();
- 
           //$scanned_tagに情報を追加
           $scanned_tag['values'][] = $title;
           $scanned_tag['labels'][] = $title;
-           
         }
       }
       wp_reset_postdata();
- 
     }
- 
   }
- 
-  return $scanned_tag; 
-}; 
-          
+  return $scanned_tag;
+};
+
 add_filter( 'wpcf7_form_tag', 'filter_wpcf7_form_tag', 11, 2 );
