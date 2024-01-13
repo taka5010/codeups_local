@@ -10,7 +10,6 @@
   </div>
 </div>
 <?php get_template_part('parts/breadcrumb') ?>
-
 <section class="sub-content sub-content-layout">
   <div class="sub-content__inner inner sub-2column">
     <div class="sub-2column__wrapper">
@@ -62,5 +61,4 @@
     <?php get_sidebar(); ?>
   </div>
 </section>
-
 <?php get_footer(); ?>
