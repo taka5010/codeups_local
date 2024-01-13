@@ -175,6 +175,10 @@
     </div>
   </div>
 </section>
+<?php
+  $args = array('post_type' => 'post','posts_per_page' => 3,);
+  $the_query = new WP_Query($args); if($the_query->have_posts()):
+?>
 <section class="blog top-blog">
   <div class="blog__inner inner">
     <div class="blog__head section-header">
@@ -182,14 +186,7 @@
       <h2 class="section-header__jatitle section-header__jatitle--blog">ブログ</h2>
     </div>
     <div class="blog__items blog-cards">
-      <?php
-      $args = array(
-        'posts_per_page' => 3
-      );
-      $posts = get_posts($args);
-      foreach ($posts as $post) :
-        setup_postdata($post);
-      ?>
+      <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
       <article class="blog-cards__item blog-card">
         <a href="<?php echo esc_url(get_permalink()); ?>">
           <figure class="voice-card__img">
@@ -207,40 +204,41 @@
                 datetime="<?php echo esc_attr(get_the_date('Y-m-d')); ?>"><?php echo esc_html(get_the_date()); ?></time>
               <h3 class="blog-card__title">
                 <?php
-                  $title_length = mb_strlen($post->post_title);
-                  if ($title_length > 20) {
-                    $title = mb_substr($post->post_title, 0, 20);
-                    echo esc_html($title) . '...';
-                  } else {
-                    echo esc_html($post->post_title);
-                  }
-                  ?>
+                    $title_length = mb_strlen($post->post_title);
+                    if ($title_length > 20) {
+                      $title = mb_substr($post->post_title, 0, 20);
+                      echo esc_html($title) . '...';
+                    } else {
+                      echo esc_html($post->post_title);
+                    }
+                    ?>
               </h3>
             </div>
             <div class="blog-card__info">
               <p class="blog-card__text">
                 <?php
-                  $remove_array = ["\r\n", "\r", "\n", " ", "　"];
-                  $content = wp_trim_words(strip_shortcodes(get_the_content()), 66, '…');
-                  $content = str_replace($remove_array, '', $content);
-                  echo esc_html($content);
-                  ?>
+                    $remove_array = ["\r\n", "\r", "\n", " ", "　"];
+                    $content = wp_trim_words(strip_shortcodes(get_the_content()), 66, '…');
+                    $content = str_replace($remove_array, '', $content);
+                    echo esc_html($content);
+                    ?>
               </p>
             </div>
           </div>
         </a>
-      </article>
-      <?php
-      endforeach;
-      wp_reset_postdata();
-      ?>
+      </article> <?php endwhile; ?>
+      <?php wp_reset_postdata(); ?>
     </div>
     <div class="blog__btn">
-      <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>" class="button"><span
-          class="button__text">view more</span><span class="button__arrow"></span></a>
+      <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>" class="button">
+        <span class="button__text">view more</span><span class="button__arrow"></span></a>
     </div>
   </div>
 </section>
+<?php else: ?>
+<?php endif; ?>
+
+
 <section class="voice top-voice">
   <div class="voice__inner inner">
     <div class="voice__head section-header">
@@ -251,6 +249,7 @@
       <?php
       $args = array(
         'post_type'      => 'voice',
+        'post_status' => 'publish',
         'posts_per_page' => 2,
       );
       $my_query = new WP_Query($args);
