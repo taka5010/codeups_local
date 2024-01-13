@@ -17,5 +17,4 @@
       <?php echo do_shortcode('[contact-form-7 id="324ba7e" title="お問い合わせ"]'); ?>
     </div>
   </div>
-
   <?php get_footer('sub'); ?>

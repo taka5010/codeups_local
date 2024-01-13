@@ -10,7 +10,6 @@
   </div>
 </div>
 <?php get_template_part('parts/breadcrumb') ?>
-
 <section class="sub-content sub-content-layout sub-price">
   <div class="sub-price__inner inner">
     <div class="sub-price__menu price-menu">
@@ -26,7 +25,6 @@
           <?php } ?>
         </dl>
       </div>
-
       <div id="price2" class="price-menu_item price-item">
         <h2 class="price-item__header">体験ダイビング</h2>
         <dl class="price-item__body">

@@ -10,7 +10,6 @@
   </div>
 </div>
 <?php get_template_part('parts/breadcrumb') ?>
-
 <section id="infomenu" class="sub-content sub-content-layout sub-information">
   <div class="sub-information__inner inner">
     <div class="sub-information__menu">
