@@ -2487,6 +2487,13 @@ textarea {
 	margin-top: 1.5rem;
 }
 
+.sideber__time p {
+	color: #000;
+	color: initial;
+	font-size: medium;
+	font-size: initial;
+}
+
 .sideber__year {
 	cursor: pointer;
 	padding-left: 2rem;

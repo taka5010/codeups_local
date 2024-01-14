@@ -35,7 +35,12 @@
         <div class="voice-card__header">
           <div class="voice-card__headerLeft">
             <div class="voice-card__info">
+              <?php if( get_field('voice_1') ):?>
               <p class="voice-card__person"><?php echo esc_html(get_field('voice_1')); ?></p>
+              <?php else:?>
+              <p class="voice-card__person"></p>
+              <?php endif; ?>
+
               <p class="voice-card__category">
                 <?php
                   $terms = get_the_terms($post->ID, 'voice_category');
@@ -75,6 +80,7 @@
         </div>
         <div class="voice-card__body">
           <div class="voice-card__info">
+            <?php if( get_field('voice_2') ):?>
             <p class="voice-card__text">
               <?php
                 $campaign_text = get_field('voice_2');
@@ -84,6 +90,7 @@
                 echo esc_html($content);
                 ?>
             </p>
+            <?php endif; ?>
           </div>
         </div>
       </div>

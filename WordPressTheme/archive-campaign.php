@@ -46,47 +46,55 @@
           <div class="campaign-card__header campaign-card__header--campaign">
             <span class="campaign-card__category">
               <?php
-                  $terms = get_the_terms($post->ID, 'campaign_category');
-                  if (!empty($terms)) {
-                      foreach ($terms as $term) :
-                          echo esc_html($term->name);
-                      endforeach;
-                  } else {
-                      echo '未分類';
-                  }
-                ?>
+            $terms = get_the_terms($post->ID, 'campaign_category');
+            if (!empty($terms)) {
+                foreach ($terms as $term) :
+                    echo esc_html($term->name);
+                endforeach;
+            } else {
+                echo '未分類';
+            }
+          ?>
             </span>
             <h3 class="campaign-card__title campaign-card__title--big ">
               <?php
-                $title = get_the_title();
-                if (mb_strlen($title) > 20) {
-                    $title = esc_html(mb_substr($title, 0, 20));
-                    echo $title . '...';
-                } else {
-                    echo esc_html($title);
-                }
-              ?>
+          $title = get_the_title();
+          if (mb_strlen($title) > 20) {
+              $title = esc_html(mb_substr($title, 0, 20));
+              echo $title . '...';
+          } else {
+              echo esc_html($title);
+          }
+        ?>
             </h3>
           </div>
           <div class="campaign-card__info campaign-card__info--campaign">
             <div class="campaign-card__text"><?php echo esc_html('全部コミコミ(お一人様)'); ?></div>
             <div class="campaign-card__pay">
+              <?php if (get_field('price')) : ?>
               <p class="campaign-card__pay-pre">¥<?php echo esc_html(get_field('price')); ?></p>
+              <?php endif; ?>
+              <?php if (get_field('price_down')) : ?>
               <p class="campaign-card__pay-post">¥<?php echo esc_html(get_field('price_down')); ?></p>
+              <?php endif; ?>
             </div>
           </div>
           <div class="campaign-card__sentence">
             <?php
-              $campaign_text = get_field('campaign_text');
-              $remove_array = ["\r\n", "\r", "\n", " ", "　"];
-              $content = wp_trim_words(strip_shortcodes($campaign_text), 66, '…' );
-              $content = str_replace($remove_array, '', $content);
-              echo esc_html($content);
-            ?>
+        $campaign_text = get_field('campaign_text');
+        if ($campaign_text) :
+          $remove_array = ["\r\n", "\r", "\n", " ", "　"];
+          $content = wp_trim_words(strip_shortcodes($campaign_text), 66, '…' );
+          $content = str_replace($remove_array, '', $content);
+          echo esc_html($content);
+        endif;
+      ?>
           </div>
           <div class="campaign-card__contact">
+            <?php if (get_field('start') && get_field('finish')) : ?>
             <div class="campaign-card__period">
               <?php echo esc_html(get_field('start')); ?>-<?php echo esc_html(get_field('finish')); ?></div>
+            <?php endif; ?>
             <p class="campaign-card__inquiry">ご予約・お問い合わせはコチラ</p>
             <div class="campaign-card__btn">
               <a href="https://taka-webdesign.main.jp/newcodeups/contact.html" class="button"><span

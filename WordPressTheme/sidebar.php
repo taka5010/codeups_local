@@ -80,7 +80,11 @@
           <?php endif; ?>
         </figure>
         <div class="reputation-card__body">
+          <?php if( get_field('voice_1') ):?>
           <span class="reputation-card__category"><?php echo esc_html( get_field( 'voice_1' ) ); ?></span>
+          <?php else:?>
+          <span class="reputation-card__category"></span>
+          <?php endif; ?>
           <div class="reputation-card__text">
             <?php
               $title = ( mb_strlen( $post->post_title ) > 20 ) ? mb_substr( $post->post_title, 0, 20 ) . '...' : $post->post_title;
@@ -153,10 +157,18 @@
               </h3>
             </div>
             <div class="campaign-card__info campaign-card__info--campaign">
-              <div class="campaign-card__text">全部コミコミ(お一人様)</div>
+              <?php if (get_field('campaign_1')) : ?>
+              <div class="campaign-card__text">
+                <?php echo esc_html(get_field('campaign_1')); ?>
+              </div>
+              <?php endif; ?>
               <div class="campaign-card__pay">
-                <p class="campaign-card__pay-pre">¥<?php echo esc_html( get_field( 'price' ) ); ?></p>
-                <p class="campaign-card__pay-post">¥<?php echo esc_html( get_field( 'price_down' ) ); ?></p>
+                <?php if (get_field('price')) : ?>
+                <p class="campaign-card__pay-pre">¥<?php echo esc_html(get_field('price')); ?></p>
+                <?php endif; ?>
+                <?php if (get_field('price_down')) : ?>
+                <p class="campaign-card__pay-post">¥<?php echo esc_html(get_field('price_down')); ?></p>
+                <?php endif; ?>
               </div>
             </div>
           </div>
@@ -177,52 +189,56 @@
     </div>
   </div>
 
+
   <div class="sideber__contents">
     <h2 class="sideber__header">アーカイブ</h2>
     <div class="sideber__time">
       <div class="sideber__date">
         <?php
-      $years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_date DESC" );
-      if ( empty( $years ) ) :
-        echo '<p>投稿がありません</p>';
-      else :
+    // $post_queryの初期化
+    $post_query = new WP_Query( array( 'post_type' => 'post', 'posts_per_page' => -1 ) );
+
+    if ( $post_query->have_posts() ) :
+      while ( $post_query->have_posts() ) :
+        $post_query->the_post();
+        $years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_date DESC" );
         foreach ( $years as $year ) :
-          // その年に公開された投稿があるか確認
-          $year_query = new WP_Query( array(
-            'year' => $year,
-            'post_status' => 'publish',
+          $year_posts = get_posts( array(
+            'year'        => $year,
+            'numberposts' => -1,
           ) );
-          if ( $year_query->have_posts() ) :
-    ?>
+          if ( count( $year_posts ) > 0 ) : // この行を追加
+  ?>
         <div class="sideber__year"><?php echo esc_html( $year ); ?></div>
         <ul class="sideber__month">
           <?php
-        $months = $wpdb->get_col( "SELECT DISTINCT MONTH(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND YEAR(post_date) = $year ORDER BY post_date DESC" );
-        foreach ( $months as $month ) :
-          // その月に公開された投稿があるか確認
-          $month_query = new WP_Query( array(
-            'year' => $year,
-            'monthnum' => $month,
-            'post_status' => 'publish',
-          ) );
-          if ( $month_query->have_posts() ) :
-            $dateObj   = DateTime::createFromFormat( '!m', $month );
-            $monthName = $dateObj->format( 'n' ); // 12
-            $post_count = count( get_posts( array(
-              'year'        => $year,
-              'monthnum'    => $month,
-              'numberposts' => -1,
-            ) ) );
-            $link = get_month_link( $year, $month );
-      ?>
+      $months = $wpdb->get_col( "SELECT DISTINCT MONTH(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND YEAR(post_date) = $year ORDER BY post_date DESC" );
+      foreach ( $months as $month ) :
+        $dateObj   = DateTime::createFromFormat( '!m', $month );
+        $monthName = $dateObj->format( 'n' ); // 12
+        $month_posts = get_posts( array(
+          'year'        => $year,
+          'monthnum'    => $month,
+          'numberposts' => -1,
+        ) );
+        if ( count( $month_posts ) > 0 ) :
+          $link = get_month_link( $year, $month );
+    ?>
           <li><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $monthName ); ?>月
-              (<?php echo esc_html( $post_count ); ?>)</a></li>
+              (<?php echo esc_html( count( $month_posts ) ); ?>)</a></li>
           <?php endif; endforeach; ?>
         </ul>
-        <?php endif; endforeach; endif; ?>
+        <?php endif; endforeach; endwhile; else : ?>
+        <!-- この行を追加 -->
+        <p>ブログは準備中です。</p>
+        <?php endif; ?>
       </div>
+
+
     </div>
-
-
   </div>
+
+
+
+
 </aside>

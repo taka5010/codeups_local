@@ -72,12 +72,18 @@ if($the_query->have_posts()):
                     </h3>
                   </div>
                   <div class="campaign-card__info campaign-card__info--campaign">
+                    <?php if (get_field('campaign_1')) : ?>
                     <div class="campaign-card__text">
                       <?php echo esc_html(get_field('campaign_1')); ?>
                     </div>
+                    <?php endif; ?>
                     <div class="campaign-card__pay">
+                      <?php if (get_field('price')) : ?>
                       <p class="campaign-card__pay-pre">¥<?php echo esc_html(get_field('price')); ?></p>
+                      <?php endif; ?>
+                      <?php if (get_field('price_down')) : ?>
                       <p class="campaign-card__pay-post">¥<?php echo esc_html(get_field('price_down')); ?></p>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
@@ -98,6 +104,7 @@ if($the_query->have_posts()):
 </section>
 <?php endif; ?>
 <?php wp_reset_postdata(); ?>
+
 <section class="about top-about">
   <div class="about__inner inner">
     <div class="section-header">
@@ -245,7 +252,11 @@ if($the_query->have_posts()): // もし投稿があるなら
         <div class="voice-card__header">
           <div class="voice-card__headerLeft">
             <div class="voice-card__info">
+              <?php if( get_field('voice_1') ):?>
               <p class="voice-card__person"><?php echo esc_html(get_field('voice_1')); ?></p>
+              <?php else:?>
+              <p class="voice-card__person"></p>
+              <?php endif; ?>
               <p class="voice-card__category">
                 <?php
                     $terms = get_the_terms($post->ID, 'voice_category');

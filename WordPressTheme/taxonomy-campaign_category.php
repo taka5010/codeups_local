@@ -65,15 +65,22 @@
           <div class="campaign-card__info campaign-card__info--campaign">
             <div class="campaign-card__text">全部コミコミ(お一人様)</div>
             <div class="campaign-card__pay">
-              <p class="campaign-card__pay-pre">¥<?php the_field( 'price' ); ?></p>
-              <p class="campaign-card__pay-post">¥<?php the_field( 'price_down' ); ?></p>
+              <?php if (get_field('price')) : ?>
+              <p class="campaign-card__pay-pre">¥<?php echo esc_html(get_field('price')); ?></p>
+              <?php endif; ?>
+              <?php if (get_field('price_down')) : ?>
+              <p class="campaign-card__pay-post">¥<?php echo esc_html(get_field('price_down')); ?></p>
+              <?php endif; ?>
             </div>
           </div>
           <div class="campaign-card__sentence">
             <?php the_field( 'campaign_text' ); ?>
           </div>
           <div class="campaign-card__contact">
-            <div class="campaign-card__period"><?php the_field( 'start' ); ?>-<?php the_field( 'finish' ); ?></div>
+            <?php if (get_field('start') && get_field('finish')) : ?>
+            <div class="campaign-card__period">
+              <?php echo esc_html(get_field('start')); ?>-<?php echo esc_html(get_field('finish')); ?></div>
+            <?php endif; ?>
             <p class="campaign-card__inquiry">ご予約・お問い合わせはコチラ</p>
             <div class="campaign-card__btn">
               <a href="<?php echo esc_url( 'https://taka-webdesign.main.jp/newcodeups/contact.html' ); ?>"
