@@ -95,7 +95,9 @@
           </div>
         </div>
       </div>
-      <?php endwhile;endif; ?>
+      <?php endwhile;else : ?>
+      <p>キャンペーンは現在ございません</p>
+      <?php endif; ?>
     </div>
     <div class="pagenation-layout pagnation wp-pagenavi">
       <?php wp_pagenavi(); ?>

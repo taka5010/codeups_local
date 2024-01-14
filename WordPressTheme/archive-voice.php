@@ -87,7 +87,9 @@
           </div>
         </div>
       </div>
-      <?php endwhile;endif; ?>
+      <?php endwhile;else : ?>
+      <p>お客様声を現在準備中です。</p>
+      <?php endif; ?>
     </div>
     <div class="pagenation-layout pagnation wp-pagenavi">
       <?php wp_pagenavi(); ?>

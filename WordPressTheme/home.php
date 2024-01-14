@@ -52,7 +52,9 @@
             </div>
           </a>
         </article>
-        <?php endwhile;endif; ?>
+        <?php endwhile;else : ?>
+        <p>ブログは準備中です。</p>
+        <?php endif; ?>
       </div>
       <div class="pagenation-layout pagnation wp-pagenavi">
         <?php wp_pagenavi(); ?>

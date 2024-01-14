@@ -7,7 +7,7 @@
         for ($i = 1; $i <= 4; $i++) {
             $img_SP = get_field("img{$i}_SP");
             $img_PC = get_field("img{$i}_PC");
-            if ($img_SP && $img_PC): // img_SPとimg_PCの両方が設定されている場合
+            if ($img_SP && $img_PC):
             ?>
         <div class="swiper-slide">
           <picture>

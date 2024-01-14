@@ -40,11 +40,19 @@
       </article>
       <?php
           endwhile;
-        endif;
-        wp_reset_postdata();
-      ?>
+          else :
+        ?>
+      <p>ブログは準備中です。</p>
+      <?php endif; ?>
     </div>
+    <?php if ( $post_query->have_posts() ) : ?>
+    <div class="sideber__btn">
+      <a href="<?php echo esc_url( get_post_type_archive_link( 'post' ) ); ?>" class="button"><span
+          class="button__text">view more</span><span class="button__arrow"></span></a>
+    </div>
+    <?php endif; ?>
   </div>
+
   <div class="sideber__contents">
     <h2 class="sideber__header">口コミ</h2>
     <div class="sideber__reputations reputations-cards">
@@ -82,16 +90,20 @@
         </div>
       </div>
       <?php
-          endwhile;
-        endif;
-        wp_reset_postdata();
+      endwhile;else :
       ?>
+      <p>お客様のお声は準備中です。</p>
+      <?php endif; ?>
     </div>
+    <?php if ( $post_query->have_posts() ) : ?>
     <div class="sideber__btn">
       <a href="<?php echo esc_url( get_post_type_archive_link( 'voice' ) ); ?>" class="button"><span
           class="button__text">view more</span><span class="button__arrow"></span></a>
     </div>
+    <?php endif; ?>
   </div>
+
+
   <div class="sideber__contents">
     <h2 class="sideber__header">キャンペーン</h2>
     <div class="sideber__campaigns">
@@ -150,45 +162,67 @@
           </div>
         </div>
         <?php
-          endwhile;
-        endif;
-        wp_reset_postdata();
+            endwhile;
+          else :
         ?>
+        <p>現在キャンペーンはございません。</p>
+        <?php endif; ?>
       </div>
+      <?php if ( $post_query->have_posts() ) : ?>
       <div class="sideber__btn">
         <a href="<?php echo esc_url( home_url( '/campaign' ) ); ?>" class="button"><span class="button__text">view
             more</span><span class="button__arrow"></span></a>
       </div>
+      <?php endif; ?>
     </div>
   </div>
+
   <div class="sideber__contents">
     <h2 class="sideber__header">アーカイブ</h2>
     <div class="sideber__time">
       <div class="sideber__date">
         <?php
-          $years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_date DESC" );
-          foreach ( $years as $year ) :
-        ?>
+      $years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_date DESC" );
+      if ( empty( $years ) ) :
+        echo '<p>投稿がありません</p>';
+      else :
+        foreach ( $years as $year ) :
+          // その年に公開された投稿があるか確認
+          $year_query = new WP_Query( array(
+            'year' => $year,
+            'post_status' => 'publish',
+          ) );
+          if ( $year_query->have_posts() ) :
+    ?>
         <div class="sideber__year"><?php echo esc_html( $year ); ?></div>
         <ul class="sideber__month">
           <?php
-            $months = $wpdb->get_col( "SELECT DISTINCT MONTH(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND YEAR(post_date) = $year ORDER BY post_date DESC" );
-            foreach ( $months as $month ) :
-              $dateObj   = DateTime::createFromFormat( '!m', $month );
-              $monthName = $dateObj->format( 'n' ); // 12
-              $post_count = count( get_posts( array(
-                'year'        => $year,
-                'monthnum'    => $month,
-                'numberposts' => -1,
-              ) ) );
-              $link = get_month_link( $year, $month );
-          ?>
+        $months = $wpdb->get_col( "SELECT DISTINCT MONTH(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND YEAR(post_date) = $year ORDER BY post_date DESC" );
+        foreach ( $months as $month ) :
+          // その月に公開された投稿があるか確認
+          $month_query = new WP_Query( array(
+            'year' => $year,
+            'monthnum' => $month,
+            'post_status' => 'publish',
+          ) );
+          if ( $month_query->have_posts() ) :
+            $dateObj   = DateTime::createFromFormat( '!m', $month );
+            $monthName = $dateObj->format( 'n' ); // 12
+            $post_count = count( get_posts( array(
+              'year'        => $year,
+              'monthnum'    => $month,
+              'numberposts' => -1,
+            ) ) );
+            $link = get_month_link( $year, $month );
+      ?>
           <li><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $monthName ); ?>月
               (<?php echo esc_html( $post_count ); ?>)</a></li>
-          <?php endforeach; ?>
+          <?php endif; endforeach; ?>
         </ul>
-        <?php endforeach; ?>
+        <?php endif; endforeach; endif; ?>
       </div>
     </div>
+
+
   </div>
 </aside>
