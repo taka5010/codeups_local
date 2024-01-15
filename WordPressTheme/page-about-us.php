@@ -42,6 +42,8 @@
     </div>
   </div>
 </div>
+<?php $fields = SCF::get('gallery-imgs'); ?>
+<?php if($fields[0]['img']): ?>
 <section class="about-gallery about-gallery-layout">
   <div class="about-gallery__inner inner">
     <div class="about-gallery__header section-header">
@@ -49,17 +51,15 @@
       <h2 class="section-header__jatitle">フォト</h2>
     </div>
     <div class="about-gallery__items gallery">
-      <?php $fields = SCF::get('gallery-imgs'); ?>
       <?php foreach($fields as $field): ?>
       <div class="gallery__item js-modal">
-        <?php if($field['img']): ?>
         <img src="<?php echo esc_url(wp_get_attachment_url($field['img'])); ?>" alt="">
-        <?php else: ?>
-        <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/no-img.jpg" alt=""> <?php endif; ?>
       </div>
       <?php endforeach; ?>
     </div>
   </div>
   <div class="about-gallery__grayDisplay"></div>
 </section>
+<?php else: ?>
+<?php endif; ?>
 <?php get_footer(); ?>
