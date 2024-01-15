@@ -12,22 +12,25 @@
 <?php get_template_part('parts/breadcrumb') ?>
 <div class="sub-content sub-content-layout sub-campaign">
   <div class="sub-campaign__inner inner">
+    <?php
+              $terms = get_terms([
+                'taxonomy' => 'campaign_category',
+                'hide_empty' => false,  // 投稿がないタームも表示
+            ]);
+              if ($terms) :
+              ?>
+
     <div class="sub-voice__menu contents-menu">
       <ul class="contents-menu__items">
         <li class="contents-menu__item"><a class="current"
             href="<?php echo esc_url(get_post_type_archive_link('campaign')); ?>">all</a></li>
-        <?php
-              $terms = get_terms(['taxonomy' => 'campaign_category']);
-              if ($terms) :
-              ?>
-        <?php foreach ($terms as $term) :
-                      ?>
+        <?php foreach ($terms as $term) :?>
         <li class="contents-menu__item"><a
             href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo esc_html($term->name); ?></a></li>
         <?php endforeach; ?>
-        <?php endif; ?>
       </ul>
     </div>
+    <?php endif; ?>
     <div class="sub-campaign__items campaign-cards--campaign">
       <?php if (have_posts()) :
           while (have_posts()) :
@@ -81,14 +84,14 @@
           </div>
           <div class="campaign-card__sentence">
             <?php
-        $campaign_text = get_field('campaign_text');
-        if ($campaign_text) :
-          $remove_array = ["\r\n", "\r", "\n", " ", "　"];
-          $content = wp_trim_words(strip_shortcodes($campaign_text), 66, '…' );
-          $content = str_replace($remove_array, '', $content);
-          echo esc_html($content);
-        endif;
-      ?>
+              $campaign_text = get_field('campaign_text');
+              if ($campaign_text) :
+                $remove_array = ["\r\n", "\r", "\n", " ", "　"];
+                $content = wp_trim_words(strip_shortcodes($campaign_text), 66, '…' );
+                $content = str_replace($remove_array, '', $content);
+                echo esc_html($content);
+              endif;
+            ?>
           </div>
           <div class="campaign-card__contact">
             <?php if (get_field('start') && get_field('finish')) : ?>

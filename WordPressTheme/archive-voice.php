@@ -12,21 +12,22 @@
 <?php get_template_part('parts/breadcrumb') ?>
 <section class="sub-content sub-content-layout sub-voice">
   <div class="sub-voice__inner inner">
+    <?php
+          $terms = get_terms(['taxonomy' => 'voice_category']);
+          if ($terms) :
+          ?>
+
     <div class="sub-voice__menu contents-menu">
       <ul class="contents-menu__items">
         <li class="contents-menu__item"><a class="current"
             href="<?php echo esc_url(get_post_type_archive_link('voice')); ?>">all</a></li>
-        <?php
-              $terms = get_terms(['taxonomy' => 'voice_category']);
-              if ($terms) :
-              ?>
         <?php foreach ($terms as $term) : ?>
         <li class="contents-menu__item"><a
             href="<?php echo esc_url(get_term_link($term)); ?>"><?php echo esc_html($term->name); ?></a></li>
         <?php endforeach; ?>
-        <?php endif; ?>
       </ul>
     </div>
+    <?php endif; ?>
     <div class="sub-voice__voices voice-cards">
       <?php if (have_posts()) :
             while (have_posts()) :
@@ -95,7 +96,7 @@
         </div>
       </div>
       <?php endwhile;else : ?>
-      <p>お客様声を現在準備中です。</p>
+      <p>お客様の声は現在準備中です。</p>
       <?php endif; ?>
     </div>
     <div class="pagenation-layout pagnation wp-pagenavi">
