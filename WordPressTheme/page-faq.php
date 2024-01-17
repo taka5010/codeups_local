@@ -16,6 +16,7 @@
       $faq = SCF::get('faq-items');
       foreach ($faq as $fields ) {
       ?>
+    <?php if ($fields['faq-q'] && $fields['faq-a']): ?>
     <details class="faq-item  js-faq-item" open>
       <summary class="faq-item__summary js-faq-item__summary">
         <span class="btn"></span><?php echo esc_html($fields['faq-q']); ?>
@@ -24,7 +25,10 @@
         <p class="faq-item__text"><?php echo esc_html($fields['faq-a']); ?></p>
       </div>
     </details>
-    <?php } ?>
+    <?php
+  endif;
+  
+  } ?>
   </div>
 </section>
 <?php get_footer(); ?>

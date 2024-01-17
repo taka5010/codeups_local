@@ -19,7 +19,6 @@
             ]);
               if ($terms) :
               ?>
-
     <div class="sub-voice__menu contents-menu">
       <ul class="contents-menu__items">
         <li class="contents-menu__item"><a href="<?php echo esc_url(get_post_type_archive_link('campaign')); ?>">all</a>

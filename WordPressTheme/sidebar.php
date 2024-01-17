@@ -194,44 +194,39 @@
     <h2 class="sideber__header">アーカイブ</h2>
     <div class="sideber__time">
       <div class="sideber__date">
-        <?php
-          $post_query = new WP_Query( array( 'post_type' => 'post', 'posts_per_page' => -1 ) );
-          if ( $post_query->have_posts() ) :
-            while ( $post_query->have_posts() ) :
-              $post_query->the_post();
-              $years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_date DESC" );
-              foreach ( $years as $year ) :
-                $year_posts = get_posts( array(
-                  'year'        => $year,
-                  'numberposts' => -1,
-                ) );
-                if ( count( $year_posts ) > 0 ) :
-        ?>
-        <div class="sideber__year"><?php echo esc_html( $year ); ?></div>
-        <ul class="sideber__month">
+        <div class="sideber__date">
           <?php
-            $months = $wpdb->get_col( "SELECT DISTINCT MONTH(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND YEAR(post_date) = $year ORDER BY post_date DESC" );
-            foreach ( $months as $month ) :
-              $dateObj   = DateTime::createFromFormat( '!m', $month );
-              $monthName = $dateObj->format( 'n' ); // 12
-              $month_posts = get_posts( array(
-                'year'        => $year,
-                'monthnum'    => $month,
-                'numberposts' => -1,
-              ) );
-              if ( count( $month_posts ) > 0 ) :
-                $link = get_month_link( $year, $month );
-          ?>
-          <li><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $monthName ); ?>月
-              (<?php echo esc_html( count( $month_posts ) ); ?>)</a></li>
+    $years = $wpdb->get_col( "SELECT DISTINCT YEAR(post_date) FROM $wpdb->posts WHERE post_status = 'publish' ORDER BY post_date DESC" );
+    foreach ( $years as $year ) :
+      $year_posts = get_posts( array(
+        'year'        => $year,
+        'numberposts' => -1,
+      ) );
+      if ( count( $year_posts ) > 0 ) :
+  ?>
+          <div class="sideber__year"><?php echo esc_html( $year ); ?></div>
+          <ul class="sideber__month">
+            <?php
+      $months = $wpdb->get_col( "SELECT DISTINCT MONTH(post_date) FROM $wpdb->posts WHERE post_status = 'publish' AND YEAR(post_date) = $year ORDER BY post_date DESC" );
+      foreach ( $months as $month ) :
+        $dateObj   = DateTime::createFromFormat( '!m', $month );
+        $monthName = $dateObj->format( 'n' ); // 12
+        $month_posts = get_posts( array(
+          'year'        => $year,
+          'monthnum'    => $month,
+          'numberposts' => -1,
+        ) );
+        if ( count( $month_posts ) > 0 ) :
+          $link = get_month_link( $year, $month );
+    ?>
+            <li><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $monthName ); ?>月
+                (<?php echo esc_html( count( $month_posts ) ); ?>)</a></li>
+            <?php endif; endforeach; ?>
+          </ul>
           <?php endif; endforeach; ?>
-        </ul>
-        <?php endif; endforeach; endwhile; else : ?>
-        <p>ブログは準備中です。</p>
-        <?php endif; ?>
+        </div>
       </div>
     </div>
-  </div>
 
 
 

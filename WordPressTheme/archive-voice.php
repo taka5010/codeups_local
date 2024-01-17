@@ -85,7 +85,7 @@
             <p class="voice-card__text">
               <?php
                 $campaign_text = get_field('voice_2');
-                $remove_array = ["\r\n", "\r", "\n", " ", "　"];
+                // $remove_array = ["\r\n", "\r", "\n", " ", "　"];
                 $content = wp_trim_words(strip_shortcodes($campaign_text), 66, '…' );
                 $content = str_replace($remove_array, '', $content);
                 echo esc_html($content);
@@ -99,7 +99,7 @@
       <p>お客様の声は現在準備中です。</p>
       <?php endif; ?>
     </div>
-    <div class="pagenation-layout pagnation wp-pagenavi">
+    <div class="pagenation-layout">
       <?php wp_pagenavi(); ?>
     </div>
   </div>

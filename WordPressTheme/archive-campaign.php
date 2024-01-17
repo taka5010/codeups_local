@@ -110,7 +110,7 @@
       <p>キャンペーンは現在ございません</p>
       <?php endif; ?>
     </div>
-    <div class="pagenation-layout pagnation wp-pagenavi">
+    <div class="pagenation-layout">
       <?php wp_pagenavi(); ?>
     </div>
   </div>

@@ -42,10 +42,9 @@
               <div class="blog-card__info">
                 <p class="blog-card__text">
                   <?php
-                    $remove_array = ["\r\n", "\r", "\n", " ", "　"];
-                    $content = wp_trim_words(strip_shortcodes(get_the_content()), 66, '…' );
-                    $content = str_replace($remove_array, '', $content);
-                    echo esc_html($content);
+                    $content = get_the_content();
+                    $trimmed_content = wp_trim_words( $content, 66, '...' );
+                    echo esc_html( $trimmed_content );
                   ?>
                 </p>
               </div>

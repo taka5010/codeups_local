@@ -13,23 +13,26 @@
 <section class="sub-content sub-content-layout sub-voice">
   <div class="sub-voice__inner inner">
     <?php
-            $taxonomy_terms = get_terms( 'voice_category' );
-            if ( ! empty( $taxonomy_terms ) && ! is_wp_error( $taxonomy_terms ) ) {
-              foreach ( $taxonomy_terms as $taxonomy_term ) :
-          ?>
+              $terms = get_terms([
+                'taxonomy' => 'voice_category',
+                'hide_empty' => false,  // 投稿がないタームも表示
+            ]);
+              if ($terms) :
+              ?>
     <div class="sub-voice__menu contents-menu">
       <ul class="contents-menu__items">
-        <li class="contents-menu__item"><a
-            href="<?php echo esc_url( get_post_type_archive_link( 'campaign' ) ); ?>">all</a></li>
-        <li><a href="<?php echo esc_url( get_term_link( $taxonomy_term ) ); ?>"
-            class="<?php if ( $taxonomy_term->slug === $term ) { echo 'current'; } ?>"><?php echo esc_html( $taxonomy_term->name ); ?></a>
+        <li class="contents-menu__item"><a href="<?php echo esc_url(get_post_type_archive_link('campaign')); ?>">all</a>
         </li>
+        <?php
+    $current_term_slug = get_queried_object()->slug;
+    foreach ($terms as $term) :?>
+        <li class="contents-menu__item"><a href="<?php echo esc_url(get_term_link($term)); ?>"
+            class="<?php if ( $term->slug === $current_term_slug ) { echo 'current'; } ?>">
+            <?php echo esc_html($term->name); ?></a></li>
+        <?php endforeach; ?>
       </ul>
     </div>
-    <?php
-              endforeach;
-            }
-          ?>
+    <?php endif; ?>
     <div class="sub-voice__voices voice-cards">
       <?php if (have_posts()) :
             while (have_posts()) :

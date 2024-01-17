@@ -3,30 +3,22 @@
   <div class="mv__inner">
     <div class="mv__swiper swiper js_mv_Swiper">
       <div class="swiper-wrapper">
+        <?php
+        for ($i = 1; $i <= 4; $i++) {
+            $img_SP = get_field("img{$i}_SP");
+            $img_PC = get_field("img{$i}_PC");
+            if ($img_SP && $img_PC):
+            ?>
         <div class="swiper-slide">
           <picture>
-            <source srcset="<?php echo esc_url(get_field('img1_SP')); ?>" media="(max-width: 769px)" />
-            <img src="<?php echo esc_url(get_field('img1_PC')); ?>" alt="横視点のウミガメ画像">
+            <source srcset="<?php echo esc_url($img_SP); ?>" media="(max-width: 767px)" />
+            <img src="<?php echo esc_url($img_PC); ?>" alt="スライドの画像">
           </picture>
         </div>
-        <div class="swiper-slide">
-          <picture>
-            <source srcset="<?php echo esc_url(get_field('img2_SP')); ?>" media="(max-width: 769px)" />
-            <img src="<?php echo esc_url(get_field('img2_PC')); ?>" alt="下視点のウミガメ画像">
-          </picture>
-        </div>
-        <div class="swiper-slide">
-          <picture>
-            <source srcset="<?php echo esc_url(get_field('img3_SP')); ?>" media="(max-width: 769px)" />
-            <img src="<?php echo esc_url(get_field('img3_PC')); ?>" alt="海上の画像">
-          </picture>
-        </div>
-        <div class="swiper-slide">
-          <picture>
-            <source srcset="<?php echo esc_url(get_field('img4_SP')); ?>" media="(max-width: 769px)" />
-            <img src="<?php echo esc_url(get_field('img4_PC')); ?>" alt="浜辺の画像">
-          </picture>
-        </div>
+        <?php
+            endif;
+        }
+        ?>
       </div>
     </div>
   </div>
@@ -35,6 +27,11 @@
     <p class="mv__subtitle">into the ocean</p>
   </div>
 </div>
+<?php
+$args = array( 'post_type' => 'campaign','posts_per_page' => 10,);
+$the_query = new WP_Query($args);
+if($the_query->have_posts()):
+?>
 <section class="campaign top-campaign">
   <div class="campaign__inner inner">
     <div class="section-header">
@@ -45,15 +42,7 @@
       <div class="campaign__container">
         <div class="campaign__swiper swiper js_mySwiper">
           <div class="swiper-wrapper">
-            <?php
-              $args = [
-                'post_type'      => 'campaign',
-                'posts_per_page' => 10,
-              ];
-              $my_query = new WP_Query($args);
-            ?>
-            <?php if ($my_query->have_posts()): ?>
-            <?php while ($my_query->have_posts()) : $my_query->the_post(); ?>
+            <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
             <div class="swiper-slide">
               <div class="sub-campaign__item campaign-card">
                 <figure class="campaign-card__img">
@@ -83,33 +72,39 @@
                     </h3>
                   </div>
                   <div class="campaign-card__info campaign-card__info--campaign">
-                    <div class="campaign-card__text">全部コミコミ(お一人様)</div>
+                    <?php if (get_field('campaign_1')) : ?>
+                    <div class="campaign-card__text">
+                      <?php echo esc_html(get_field('campaign_1')); ?>
+                    </div>
+                    <?php endif; ?>
                     <div class="campaign-card__pay">
+                      <?php if (get_field('price')) : ?>
                       <p class="campaign-card__pay-pre">¥<?php echo esc_html(get_field('price')); ?></p>
+                      <?php endif; ?>
+                      <?php if (get_field('price_down')) : ?>
                       <p class="campaign-card__pay-post">¥<?php echo esc_html(get_field('price_down')); ?></p>
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <?php endwhile; ?>
-            <?php else: ?>
-            <p>まだ投稿がありません。</p>
-            <?php endif; wp_reset_postdata(); ?>
           </div>
         </div>
       </div>
       <div class="swiper-button-next u-desktop"></div>
       <div class="swiper-button-prev u-desktop"></div>
     </div>
-  </div>
-  <div class="campaign__btn">
-    <a href="<?php echo esc_url(home_url('/campaign')); ?>" class="button">
-      <span class="button__text">view more</span>
-      <span class="button__arrow"></span>
-    </a>
+    <div class="campaign__btn">
+      <a href="<?php echo esc_url(home_url('/campaign')); ?>" class="button"><span class="button__text">view
+          more</span><span class="button__arrow"></span></a>
+    </div>
   </div>
 </section>
+<?php endif; ?>
+<?php wp_reset_postdata(); ?>
+
 <section class="about top-about">
   <div class="about__inner inner">
     <div class="section-header">
@@ -175,6 +170,12 @@
     </div>
   </div>
 </section>
+
+<?php
+$args = array( 'post_type' => 'post','posts_per_page' => 3,);
+$the_query = new WP_Query($args);
+if($the_query->have_posts()): // もし投稿があるなら
+?>
 <section class="blog top-blog">
   <div class="blog__inner inner">
     <div class="blog__head section-header">
@@ -182,14 +183,7 @@
       <h2 class="section-header__jatitle section-header__jatitle--blog">ブログ</h2>
     </div>
     <div class="blog__items blog-cards">
-      <?php
-      $args = array(
-        'posts_per_page' => 3
-      );
-      $posts = get_posts($args);
-      foreach ($posts as $post) :
-        setup_postdata($post);
-      ?>
+      <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
       <article class="blog-cards__item blog-card">
         <a href="<?php echo esc_url(get_permalink()); ?>">
           <figure class="voice-card__img">
@@ -230,10 +224,7 @@
           </div>
         </a>
       </article>
-      <?php
-      endforeach;
-      wp_reset_postdata();
-      ?>
+      <?php endwhile; ?>
     </div>
     <div class="blog__btn">
       <a href="<?php echo esc_url(get_post_type_archive_link('post')); ?>" class="button"><span
@@ -241,6 +232,14 @@
     </div>
   </div>
 </section>
+<?php endif; // 投稿がない場合、section全体を表示しない ?>
+<?php wp_reset_postdata(); ?>
+
+<?php
+$args = array( 'post_type' => 'voice','posts_per_page' => 2,);
+$the_query = new WP_Query($args);
+if($the_query->have_posts()): // もし投稿があるなら
+?>
 <section class="voice top-voice">
   <div class="voice__inner inner">
     <div class="voice__head section-header">
@@ -248,21 +247,16 @@
       <h2 class="section-header__jatitle">お客様の声</h2>
     </div>
     <div class="voice__items voice-cards">
-      <?php
-      $args = array(
-        'post_type'      => 'voice',
-        'posts_per_page' => 2,
-      );
-      $my_query = new WP_Query($args);
-      ?>
-
-      <?php if ($my_query->have_posts()): ?>
-      <?php while ($my_query->have_posts()) : $my_query->the_post(); ?>
+      <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
       <div class="voice-cards__item voice-card">
         <div class="voice-card__header">
           <div class="voice-card__headerLeft">
             <div class="voice-card__info">
+              <?php if( get_field('voice_1') ):?>
               <p class="voice-card__person"><?php echo esc_html(get_field('voice_1')); ?></p>
+              <?php else:?>
+              <p class="voice-card__person"></p>
+              <?php endif; ?>
               <p class="voice-card__category">
                 <?php
                     $terms = get_the_terms($post->ID, 'voice_category');
@@ -299,9 +293,6 @@
         </div>
       </div>
       <?php endwhile; ?>
-      <?php else: ?>
-      <p>まだ投稿がありません。</p>
-      <?php endif; wp_reset_postdata(); ?>
     </div>
     <div class="voice__btn">
       <a href="<?php echo esc_url(get_post_type_archive_link('voice')); ?>" class="button"><span
@@ -309,6 +300,11 @@
     </div>
   </div>
 </section>
+<?php endif; // 投稿がない場合、section全体を表示しない ?>
+<?php wp_reset_postdata(); ?>
+
+
+
 <section class="price top-price">
   <div class="price__inner inner">
     <div class="price__head section-header">
@@ -332,7 +328,14 @@
             foreach ($faq as $fields ) {
             ?>
             <div class="lecture__menu">
-              <p class="lecture__course"><?php echo esc_html($fields['group1-1']); ?></p>
+              <p class="lecture__course">
+                <?php
+                $allowed_html = array(
+                    'br' => array()
+                );
+                echo wp_kses($fields['group1-1'], $allowed_html);
+                ?>
+              </p>
               <span class="lecture__pay"><?php echo esc_html($fields['group1-2']); ?></span>
             </div>
             <?php } ?>
@@ -346,7 +349,11 @@
             foreach ($faq as $fields ) {
             ?>
             <div class="lecture__menu">
-              <p class="lecture__course"><?php echo esc_html($fields['group2-1']); ?></p>
+              <p class="lecture__course">
+                <?php
+                  echo wp_kses($fields['group2-1'], $allowed_html);
+                  ?>
+              </p>
               <span class="lecture__pay"><?php echo esc_html($fields['group2-2']); ?></span>
             </div>
             <?php } ?>
@@ -360,7 +367,11 @@
             foreach ($faq as $fields ) {
             ?>
             <div class="lecture__menu">
-              <p class="lecture__course"><?php echo esc_html($fields['group3-1']); ?></p>
+              <p class="lecture__course">
+                <?php
+                  echo wp_kses($fields['group3-1'], $allowed_html);
+                  ?>
+              </p>
               <span class="lecture__pay"><?php echo esc_html($fields['group3-2']); ?></span>
             </div>
             <?php } ?>
@@ -374,7 +385,11 @@
             foreach ($faq as $fields ) {
             ?>
             <div class="lecture__menu">
-              <p class="lecture__course"><?php echo esc_html($fields['group4-1']); ?></p>
+              <p class="lecture__course">
+                <?php
+                  echo wp_kses($fields['group4-1'], $allowed_html);
+                  ?>
+              </p>
               <span class="lecture__pay"><?php echo esc_html($fields['group4-2']); ?></span>
             </div>
             <?php } ?>
