@@ -14,50 +14,50 @@
   <div class="sub-price__inner inner">
     <div class="sub-price__menu price-menu">
       <div id="price1" class="price-menu_item price-item">
-        <h2 class="price-item__header">ライセンス講習</h2>
+        <h2 class="price-item__header"><?php echo SCF::get_option_meta('price-options','price1'); ?></h2>
         <dl class="price-item__body">
           <?php
-              $faq = SCF::get('price-group1');
-              foreach ($faq as $fields ) {
-              ?>
-          <dt class="price-item__left"><?php echo esc_html($fields['group1-1']); ?></dt>
-          <dd class="price-item__right"><?php echo esc_html($fields['group1-2']); ?></dd>
+            $fields = SCF::get_option_meta( 'price-options', 'price-group1' );
+            foreach ( $fields as $field_name => $fields_value ) {
+          ?>
+          <dt class="price-item__left"><?php echo $fields_value['price-group1-1']; ?></dt>
+          <dd class="price-item__right">￥<?php echo $fields_value['price-group1-2']; ?></dd>
           <?php } ?>
         </dl>
       </div>
       <div id="price2" class="price-menu_item price-item">
-        <h2 class="price-item__header">体験ダイビング</h2>
+        <h2 class="price-item__header"><?php echo SCF::get_option_meta('price-options','price2'); ?></h2>
         <dl class="price-item__body">
           <?php
-              $faq = SCF::get('price-group2');
-              foreach ($faq as $fields ) {
-              ?>
-          <dt class="price-item__left"><?php echo esc_html($fields['group2-1']); ?></dt>
-          <dd class="price-item__right"><?php echo esc_html($fields['group2-2']); ?></dd>
+            $fields = SCF::get_option_meta( 'price-options', 'price-group2' );
+            foreach ( $fields as $field_name => $fields_value ) {
+          ?>
+          <dt class="price-item__left"><?php echo $fields_value['price-group2-1']; ?></dt>
+          <dd class="price-item__right">￥<?php echo $fields_value['price-group2-2']; ?></dd>
           <?php } ?>
         </dl>
       </div>
       <div id="price3" class="price-menu_item price-item">
-        <h2 class="price-item__header">ファンダイビング</h2>
+        <h2 class="price-item__header"><?php echo SCF::get_option_meta('price-options','price3'); ?></h2>
         <dl class="price-item__body">
           <?php
-              $faq = SCF::get('price-group3');
-              foreach ($faq as $fields ) {
-              ?>
-          <dt class="price-item__left"><?php echo esc_html($fields['group3-1']); ?></dt>
-          <dd class="price-item__right"><?php echo esc_html($fields['group3-2']); ?></dd>
+            $fields = SCF::get_option_meta( 'price-options', 'price-group3' );
+            foreach ( $fields as $field_name => $fields_value ) {
+          ?>
+          <dt class="price-item__left"><?php echo $fields_value['price-group3-1']; ?></dt>
+          <dd class="price-item__right">￥<?php echo $fields_value['price-group3-2']; ?></dd>
           <?php } ?>
         </dl>
       </div>
       <div id="price4" class="price-menu_item price-item">
-        <h2 class="price-item__header">スペシャルダイビング</h2>
+        <h2 class="price-item__header"><?php echo SCF::get_option_meta('price-options','price4'); ?></h2>
         <dl class="price-item__body">
           <?php
-              $faq = SCF::get('price-group4');
-              foreach ($faq as $fields ) {
-              ?>
-          <dt class="price-item__left"><?php echo esc_html($fields['group4-1']); ?></dt>
-          <dd class="price-item__right"><?php echo esc_html($fields['group4-2']); ?></dd>
+            $fields = SCF::get_option_meta( 'price-options', 'price-group4' );
+            foreach ( $fields as $field_name => $fields_value ) {
+          ?>
+          <dt class="price-item__left"><?php echo $fields_value['price-group4-1']; ?></dt>
+          <dd class="price-item__right">￥<?php echo $fields_value['price-group4-2']; ?></dd>
           <?php } ?>
         </dl>
       </div>

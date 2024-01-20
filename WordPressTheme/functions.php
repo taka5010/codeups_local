@@ -146,7 +146,7 @@ add_filter( 'wpcf7_form_tag', 'filter_wpcf7_form_tag', 11, 2 );
 * @param string|null $icon_url メニューに表示するアイコンの URL
 * @param int $position メニューの位置
 */
-SCF::add_options_page( 'FAQ', 'FAQ', 'manage_options', 'faq-options' );
+SCF::add_options_page( 'FAQ', 'FAQ', 'manage_options', 'faq-options','dashicons-lightbulb', '5' );
 
 /**
 * @param string $page_title ページのtitle属性値
@@ -156,7 +156,7 @@ SCF::add_options_page( 'FAQ', 'FAQ', 'manage_options', 'faq-options' );
 * @param string|null $icon_url メニューに表示するアイコンの URL
 * @param int $position メニューの位置
 */
-SCF::add_options_page( '料金一覧', '料金一覧', 'manage_options', 'price-options' );
+SCF::add_options_page( '料金一覧', '料金一覧', 'manage_options', 'price-options','dashicons-money', '5');
 
 /**
 * @param string $page_title ページのtitle属性値
@@ -166,4 +166,4 @@ SCF::add_options_page( '料金一覧', '料金一覧', 'manage_options', 'price-
 * @param string|null $icon_url メニューに表示するアイコンの URL
 * @param int $position メニューの位置
 */
-SCF::add_options_page( 'ギャラリー', 'ギャラリー', 'manage_options', 'gallery-options' );
+SCF::add_options_page( 'ギャラリー', 'ギャラリー', 'manage_options', 'gallery-options','dashicons-format-gallery', '5' );

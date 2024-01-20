@@ -42,8 +42,9 @@
     </div>
   </div>
 </div>
-<?php $fields = SCF::get('gallery-imgs'); ?>
-<?php if($fields[0]['img']): ?>
+<?php
+  $repeat_item = SCF::get_option_meta( 'gallery-options', 'gallery-imgs' );
+  if ($repeat_item[0]['img']): ?>
 <section class="about-gallery about-gallery-layout">
   <div class="about-gallery__inner inner">
     <div class="about-gallery__header section-header">
@@ -51,16 +52,20 @@
       <h2 class="section-header__jatitle">フォト</h2>
     </div>
     <div class="about-gallery__items gallery">
+
       <?php
-       foreach($fields as $field): ?>
+  foreach ($repeat_item as $fields ) {
+  $image_url = wp_get_attachment_image_src($fields['img'] , 'full');
+?>
       <div class="gallery__item js-modal">
-        <img src="<?php echo esc_url(wp_get_attachment_url($field['img'])); ?>" alt="">
+        <img src="<?php echo $image_url[0]; ?>" width="<?php echo $image_url[1]; ?>"
+          height="<?php echo $image_url[2]; ?>" alt="">
       </div>
-      <?php endforeach; ?>
+      <?php } ?>
+
     </div>
   </div>
   <div class="about-gallery__grayDisplay"></div>
 </section>
-<?php else: ?>
 <?php endif; ?>
 <?php get_footer(); ?>
