@@ -35,6 +35,7 @@
       <?php if (have_posts()) :
           while (have_posts()) :
           the_post(); ?>
+
       <div class="sub-campaign__item campaign-card">
         <figure class="campaign-card__img">
           <?php if (get_the_post_thumbnail()) : ?>
@@ -72,31 +73,32 @@
             </h3>
           </div>
           <div class="campaign-card__info campaign-card__info--campaign">
-            <div class="campaign-card__text"><?php echo esc_html('全部コミコミ(お一人様)'); ?></div>
+            <?php
+            $group_name = get_field('price-group');
+            if( $group_name ): ?>
+            <div class="campaign-card__text"><?php echo $group_name['price-group1']; ?></div>
             <div class="campaign-card__pay">
               <?php if (get_field('price')) : ?>
-              <p class="campaign-card__pay-pre">¥<?php echo esc_html(get_field('price')); ?></p>
+              <p class="campaign-card__pay-pre">¥<?php echo $group_name['price-group3']; ?></p>
               <?php endif; ?>
               <?php if (get_field('price_down')) : ?>
-              <p class="campaign-card__pay-post">¥<?php echo esc_html(get_field('price_down')); ?></p>
+              <p class="campaign-card__pay-post">¥<?php echo $group_name['price-group2']; ?></p>
               <?php endif; ?>
             </div>
           </div>
+          <?php if( get_field('campaign_text') ):?>
           <div class="campaign-card__sentence">
-            <?php
-              $campaign_text = get_field('campaign_text');
-              if ($campaign_text) :
-                $remove_array = ["\r\n", "\r", "\n", " ", "　"];
-                $content = wp_trim_words(strip_shortcodes($campaign_text), 66, '…' );
-                $content = str_replace($remove_array, '', $content);
-                echo esc_html($content);
-              endif;
-            ?>
+            <?php the_field('campaign_text'); ?>
           </div>
+          <?php endif; ?>
+          <?php endif; ?>
           <div class="campaign-card__contact">
-            <?php if (get_field('start') && get_field('finish')) : ?>
+            <?php
+            $campaign_term = get_field('campaign_term');
+            if( $campaign_term ): ?>
             <div class="campaign-card__period">
-              <?php echo esc_html(get_field('start')); ?>-<?php echo esc_html(get_field('finish')); ?></div>
+              <?php echo $campaign_term['start']; ?>-<?php echo $campaign_term['finish']; ?></div>
+
             <?php endif; ?>
             <p class="campaign-card__inquiry">ご予約・お問い合わせはコチラ</p>
             <div class="campaign-card__btn">
@@ -104,6 +106,7 @@
                   class="button__text">contact us</span><span class="button__arrow"></span></a>
             </div>
           </div>
+
         </div>
       </div>
       <?php endwhile;else : ?>

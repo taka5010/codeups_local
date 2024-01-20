@@ -1,22 +1,24 @@
 <?php get_header(); ?>
+
 <div class="mv">
   <div class="mv__inner">
     <div class="mv__swiper swiper js_mv_Swiper">
       <div class="swiper-wrapper">
         <?php
         for ($i = 1; $i <= 4; $i++) {
-            $img_SP = get_field("img{$i}_SP");
-            $img_PC = get_field("img{$i}_PC");
-            if ($img_SP && $img_PC):
-            ?>
+        $mv_sp = get_field('mv_sp');
+        $mv_pc = get_field('mv_pc');
+        $mv_text = get_field('mv_text');
+        if ($mv_sp["mv_sp{$i}"] && $mv_pc["mv_pc{$i}"]):
+        ?>
         <div class="swiper-slide">
           <picture>
-            <source srcset="<?php echo esc_url($img_SP); ?>" media="(max-width: 767px)" />
-            <img src="<?php echo esc_url($img_PC); ?>" alt="スライドの画像">
+            <source srcset="<?php echo esc_url($mv_pc["mv_pc{$i}"]); ?>" media="(max-width: 767px)" />
+            <img src="<?php echo esc_url($mv_pc["mv_pc{$i}"]); ?>" alt="<?php echo $mv_text["mv_text{$i}"]; ?>">
           </picture>
         </div>
         <?php
-            endif;
+        endif;
         }
         ?>
       </div>
@@ -68,7 +70,8 @@ if($the_query->have_posts()):
                             }
                           ?>
                     </span>
-                    <h3 class="campaign-card__title campaign-card__title--big "><?php echo esc_html(get_the_title()); ?>
+                    <h3 class="campaign-card__title campaign-card__title--big ">
+                      <?php echo esc_html(get_the_title()); ?>
                     </h3>
                   </div>
                   <div class="campaign-card__info campaign-card__info--campaign">
@@ -248,50 +251,64 @@ if($the_query->have_posts()): // もし投稿があるなら
     </div>
     <div class="voice__items voice-cards">
       <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+      <?php
+        $group_name = get_field('voice_info');
+        if( $group_name ): ?>
       <div class="voice-cards__item voice-card">
         <div class="voice-card__header">
           <div class="voice-card__headerLeft">
             <div class="voice-card__info">
-              <?php if( get_field('voice_1') ):?>
-              <p class="voice-card__person"><?php echo esc_html(get_field('voice_1')); ?></p>
-              <?php else:?>
+              <p class="voice-card__person">
+                <?php echo $group_name['voice_info1']; ?>代(<?php echo $group_name['voice_info2']; ?>)</p>
               <p class="voice-card__person"></p>
-              <?php endif; ?>
               <p class="voice-card__category">
                 <?php
-                    $terms = get_the_terms($post->ID, 'voice_category');
-                    if (!empty($terms)) {
-                      foreach ($terms as $term):
-                        echo esc_html($term->name);
+                  $terms = get_the_terms($post->ID, 'voice_category');
+                  if (!empty($terms)) {
+                      foreach ($terms as $term) :
+                          echo esc_html($term->name);
                       endforeach;
-                    } else {
+                  } else {
                       echo '未分類';
-                    }
-                    ?>
+                  }
+                ?>
               </p>
             </div>
-            <h3 class="voice-card__title"><?php the_title(); ?></h3>
+            <h3 class="voice-card__title">
+              <?php
+                  $title = get_the_title();
+                  if (mb_strlen($title) > 20) {
+                      $title = esc_html(mb_substr($title, 0, 20));
+                      echo $title . '...';
+                  } else {
+                      echo esc_html($title);
+                  }
+                ?>
+            </h3>
           </div>
           <div class="voice-card__headerRight">
             <figure class="voice-card__img js-inview">
-              <?php if (get_the_post_thumbnail()): ?>
-              <img src="<?php echo esc_url(get_the_post_thumbnail_url($post->ID, 'full')); ?>"
-                alt="<?php the_title(); ?>のアイキャッチ画像">
-              <?php else: ?>
-              <img src="<?php echo esc_url(get_theme_file_uri('/assets/images/common/no-img.jpg')); ?>"
-                alt="<?php the_title(); ?>のアイキャッチ画像">
+              <?php if (get_the_post_thumbnail()) : ?>
+              <img src="<?php echo esc_url(get_the_post_thumbnail_url(null, 'full')); ?>"
+                alt="<?php echo esc_html(get_the_title()); ?>のアイキャッチ画像">
+              <?php else : ?>
+              <img src="<?php echo esc_url(get_theme_file_uri()); ?>/assets/images/common/no-img.jpg"
+                alt="<?php echo esc_html(get_the_title()); ?>のアイキャッチ画像">
               <?php endif; ?>
             </figure>
           </div>
         </div>
         <div class="voice-card__body">
           <div class="voice-card__info">
+            <?php if( get_field('voice_text') ):?>
             <p class="voice-card__text">
-              <?php echo esc_html(get_field('voice_2')); ?>
+              <?php the_field('voice_text'); ?>
             </p>
+            <?php endif; ?>
           </div>
         </div>
       </div>
+      <?php endif; ?>
       <?php endwhile; ?>
     </div>
     <div class="voice__btn">
@@ -302,9 +319,6 @@ if($the_query->have_posts()): // もし投稿があるなら
 </section>
 <?php endif; // 投稿がない場合、section全体を表示しない ?>
 <?php wp_reset_postdata(); ?>
-
-
-
 <section class="price top-price">
   <div class="price__inner inner">
     <div class="price__head section-header">

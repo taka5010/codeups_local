@@ -16,7 +16,6 @@
           $terms = get_terms(['taxonomy' => 'voice_category']);
           if ($terms) :
           ?>
-
     <div class="sub-voice__menu contents-menu">
       <ul class="contents-menu__items">
         <li class="contents-menu__item"><a class="current"
@@ -32,16 +31,16 @@
       <?php if (have_posts()) :
             while (have_posts()) :
               the_post(); ?>
+      <?php
+        $group_name = get_field('voice_info');
+        if( $group_name ): ?>
       <div class="voice-cards__item voice-card">
         <div class="voice-card__header">
           <div class="voice-card__headerLeft">
             <div class="voice-card__info">
-              <?php if( get_field('voice_1') ):?>
-              <p class="voice-card__person"><?php echo esc_html(get_field('voice_1')); ?></p>
-              <?php else:?>
+              <p class="voice-card__person">
+                <?php echo $group_name['voice_info1']; ?>代(<?php echo $group_name['voice_info2']; ?>)</p>
               <p class="voice-card__person"></p>
-              <?php endif; ?>
-
               <p class="voice-card__category">
                 <?php
                   $terms = get_the_terms($post->ID, 'voice_category');
@@ -81,20 +80,15 @@
         </div>
         <div class="voice-card__body">
           <div class="voice-card__info">
-            <?php if( get_field('voice_2') ):?>
+            <?php if( get_field('voice_text') ):?>
             <p class="voice-card__text">
-              <?php
-                $campaign_text = get_field('voice_2');
-                // $remove_array = ["\r\n", "\r", "\n", " ", "　"];
-                $content = wp_trim_words(strip_shortcodes($campaign_text), 66, '…' );
-                $content = str_replace($remove_array, '', $content);
-                echo esc_html($content);
-                ?>
+              <?php the_field('voice_text'); ?>
             </p>
             <?php endif; ?>
           </div>
         </div>
       </div>
+      <?php endif; ?>
       <?php endwhile;else : ?>
       <p>お客様の声は現在準備中です。</p>
       <?php endif; ?>

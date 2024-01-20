@@ -13,21 +13,20 @@
 <section class="sub-content sub-content-layout sub-faq">
   <div class="sub-faq__inner inner">
     <?php
-      $faq = SCF::get('faq-items');
-      foreach ($faq as $fields ) {
-      ?>
-    <?php if ($fields['faq-q'] && $fields['faq-a']): ?>
+  $fields = SCF::get_option_meta( 'faq-options', 'faq-items' );
+  foreach ( $fields as $field_name => $fields_value ) {
+?>
+    <?php if ($fields_value['faq-q'] && $fields_value['faq-a']): ?>
     <details class="faq-item  js-faq-item" open>
       <summary class="faq-item__summary js-faq-item__summary">
-        <span class="btn"></span><?php echo esc_html($fields['faq-q']); ?>
+        <span class="btn"></span> <?php echo $fields_value['faq-q']; ?>
       </summary>
       <div class="faq-item__content js-faq-item__content">
-        <p class="faq-item__text"><?php echo esc_html($fields['faq-a']); ?></p>
+        <p class="faq-item__text"><?php echo $fields_value['faq-a']; ?></p>
       </div>
     </details>
     <?php
   endif;
-  
   } ?>
   </div>
 </section>

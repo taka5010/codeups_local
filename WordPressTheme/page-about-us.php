@@ -51,7 +51,8 @@
       <h2 class="section-header__jatitle">フォト</h2>
     </div>
     <div class="about-gallery__items gallery">
-      <?php foreach($fields as $field): ?>
+      <?php
+       foreach($fields as $field): ?>
       <div class="gallery__item js-modal">
         <img src="<?php echo esc_url(wp_get_attachment_url($field['img'])); ?>" alt="">
       </div>

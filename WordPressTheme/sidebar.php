@@ -80,8 +80,11 @@
           <?php endif; ?>
         </figure>
         <div class="reputation-card__body">
-          <?php if( get_field('voice_1') ):?>
-          <span class="reputation-card__category"><?php echo esc_html( get_field( 'voice_1' ) ); ?></span>
+          <?php
+        $group_name = get_field('voice_info');
+        if( $group_name ): ?>
+          <span class="reputation-card__category">
+            <?php echo $group_name['voice_info1']; ?>代(<?php echo $group_name['voice_info2']; ?>)</span>
           <?php else:?>
           <span class="reputation-card__category"></span>
           <?php endif; ?>
@@ -157,36 +160,36 @@
               </h3>
             </div>
             <div class="campaign-card__info campaign-card__info--campaign">
-              <?php if (get_field('campaign_1')) : ?>
-              <div class="campaign-card__text">
-                <?php echo esc_html(get_field('campaign_1')); ?>
-              </div>
-              <?php endif; ?>
+              <?php
+            $group_name = get_field('price-group');
+            if( $group_name ): ?>
+              <div class="campaign-card__text"><?php echo $group_name['price-group1']; ?></div>
               <div class="campaign-card__pay">
                 <?php if (get_field('price')) : ?>
-                <p class="campaign-card__pay-pre">¥<?php echo esc_html(get_field('price')); ?></p>
+                <p class="campaign-card__pay-pre">¥<?php echo $group_name['price-group3']; ?></p>
                 <?php endif; ?>
                 <?php if (get_field('price_down')) : ?>
-                <p class="campaign-card__pay-post">¥<?php echo esc_html(get_field('price_down')); ?></p>
+                <p class="campaign-card__pay-post">¥<?php echo $group_name['price-group2']; ?></p>
                 <?php endif; ?>
               </div>
             </div>
+            <?php endif; ?>
           </div>
         </div>
         <?php
-            endwhile;
-          else :
+            endwhile;else :
         ?>
-        <p>現在キャンペーンはございません。</p>
-        <?php endif; ?>
       </div>
-      <?php if ( $post_query->have_posts() ) : ?>
-      <div class="sideber__btn">
-        <a href="<?php echo esc_url( home_url( '/campaign' ) ); ?>" class="button"><span class="button__text">view
-            more</span><span class="button__arrow"></span></a>
-      </div>
+      <p>現在キャンペーンはございません。</p>
       <?php endif; ?>
     </div>
+    <?php if ( $post_query->have_posts() ) : ?>
+    <div class="sideber__btn">
+      <a href="<?php echo esc_url( home_url( '/campaign' ) ); ?>" class="button"><span class="button__text">view
+          more</span><span class="button__arrow"></span></a>
+    </div>
+    <?php endif; ?>
+  </div>
   </div>
 
 
